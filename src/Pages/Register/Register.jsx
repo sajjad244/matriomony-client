@@ -1,14 +1,48 @@
+import {useContext} from "react";
 import {Link} from "react-router-dom";
+import AuthContext from "../../Provider/AuthContext";
+import toast from "react-hot-toast";
 
 const Register = () => {
+  const {createNewUser} = useContext(AuthContext);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    const name = form.name.value;
+    const photoURL = form.photoURL.value;
+
+    console.log(name, email, photoURL, password);
+
+    //! Password validation regex
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+    if (!passwordRegex.test(password)) {
+      toast.error(
+        "Password must have at least 6 characters, including uppercase and lowercase letters."
+      );
+      return;
+    }
+
+    createNewUser(email, password, name, photoURL)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   return (
     <div className="flex justify-center h-screen items-center container mx-auto p-8">
       {/* Login Form Section */}
       <div className="flex flex-col justify-center w-full md:w-1/2 px-8 md:px-16 bg-white rounded-lg ">
         <h2 className="text-3xl font-semibold text-gray-800 text-center mb-8">
-          Register
+          Register Now
         </h2>
-        <form className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6 shadow-lg p-8">
           {/* Name Input */}
           <div>
             <label htmlFor="name" className="block  font-medium text-gray-700">

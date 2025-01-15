@@ -1,14 +1,44 @@
-import {Link} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
+import toast from "react-hot-toast";
+import {useContext} from "react";
+import AuthContext from "../../Provider/AuthContext";
 
 const Login = () => {
+  const {loginUser} = useContext(AuthContext);
+
+  //! for navigate path
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // Handle login logic here
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    loginUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success(`Welcome successfully logged in.`);
+      })
+      .catch((error) => {
+        console.log(error.message);
+        toast.error(` Don’t have an account? Register please _!!`);
+      });
+
+    form.reset();
+  };
+
   return (
-    <div className="flex justify-center h-screen items-center container mx-auto p-8">
+    <div className="flex justify-center h-screen items-center container  mx-auto p-8 ">
       {/* Login Form Section */}
       <div className="flex flex-col justify-center w-full md:w-1/2 px-8 md:px-16 bg-white rounded-lg ">
         <h2 className="text-3xl font-semibold text-gray-800 text-center mb-8">
-          Login to your account
+          Login to your Account
         </h2>
-        <form className="space-y-6">
+        <form onSubmit={handleLogin} className="space-y-6 shadow-lg p-8">
           {/* Email Input */}
           <div>
             <label htmlFor="email" className="block  font-medium text-gray-700">

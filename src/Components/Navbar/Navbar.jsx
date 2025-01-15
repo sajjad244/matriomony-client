@@ -1,9 +1,18 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {HiMenu, HiX} from "react-icons/hi";
 import {Link} from "react-router-dom";
+import AuthContext from "../../Provider/AuthContext";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const {user, logOut} = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut().then(() => {
+      toast.success("Logout Successfully");
+    });
+  };
 
   const links = (
     <>
@@ -28,20 +37,32 @@ const Navbar = () => {
         About
       </a>
 
-      <Link
-        to="/login"
-        href="#contact"
-        className="hover:bg-blue-700 px-3 py-2 rounded-md"
-      >
-        Login
-      </Link>
-      <Link
-        to="/login"
-        href="#contact"
-        className="hover:bg-blue-700 px-3 py-2 rounded-md"
-      >
-        Dashboard
-      </Link>
+      {user?.email ? (
+        <>
+          <button
+            onClick={handleLogOut}
+            className="hover:bg-blue-700 px-3 py-2 rounded-md"
+          >
+            Logout
+          </button>
+
+          <Link
+            to="/login"
+            href="#contact"
+            className="hover:bg-blue-700 px-3 py-2 rounded-md"
+          >
+            Dashboard
+          </Link>
+        </>
+      ) : (
+        <Link
+          to="/login"
+          href="#contact"
+          className="hover:bg-blue-700 px-3 py-2 rounded-md"
+        >
+          Login
+        </Link>
+      )}
     </>
   );
 
