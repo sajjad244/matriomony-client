@@ -1,5 +1,68 @@
+import {useState} from "react";
+import {HiMenu, HiX} from "react-icons/hi";
+import {Link} from "react-router-dom";
+
 const Navbar = () => {
-  return <div>hey from navbar</div>;
+  const [isOpen, setIsOpen] = useState(false);
+
+  const links = (
+    <>
+      <a href="#home" className="hover:bg-blue-700 px-3 py-2 rounded-md">
+        Home
+      </a>
+      <a href="#about" className="hover:bg-blue-700 px-3 py-2 rounded-md">
+        About
+      </a>
+      <a href="#services" className="hover:bg-blue-700 px-3 py-2 rounded-md">
+        Services
+      </a>
+      <a href="#contact" className="hover:bg-blue-700 px-3 py-2 rounded-md">
+        Contact
+      </a>
+      <Link
+        to="/login"
+        href="#contact"
+        className="hover:bg-blue-700 px-3 py-2 rounded-md"
+      >
+        Login
+      </Link>
+      <Link
+        to="/login"
+        href="#contact"
+        className="hover:bg-blue-700 px-3 py-2 rounded-md"
+      >
+        Dashboard
+      </Link>
+    </>
+  );
+
+  return (
+    <nav className=" sticky top-0 z-50 bg-transparent ">
+      <div className=" px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center">
+            <Link to="/">
+              <h1 className="text-2xl font-bold">Matrimony</h1>
+            </Link>{" "}
+          </div>
+          <div className="hidden md:flex font-semibold space-x-4">{links}</div>
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className=" focus:outline-none"
+            >
+              {isOpen ? (
+                <HiX className="h-6 w-6" />
+              ) : (
+                <HiMenu className="h-6 w-6" />
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+      {isOpen && <div className="md:hidden bg-blue-500">{links}</div>}
+    </nav>
+  );
 };
 
 export default Navbar;
