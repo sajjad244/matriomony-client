@@ -7,18 +7,27 @@ const Navbar = () => {
 
   const links = (
     <>
-      <a href="#home" className="hover:bg-blue-700 px-3 py-2 rounded-md">
+      <Link
+        to="/"
+        href="#contact"
+        className="hover:bg-blue-700 px-3 py-2 rounded-md"
+      >
         Home
+      </Link>
+      <Link
+        to="/biodatas"
+        href="#contact"
+        className="hover:bg-blue-700 px-3 py-2 rounded-md"
+      >
+        Biodatas
+      </Link>
+      <a href="#contact" className="hover:bg-blue-700 px-3 py-2 rounded-md">
+        Contact
       </a>
       <a href="#about" className="hover:bg-blue-700 px-3 py-2 rounded-md">
         About
       </a>
-      <a href="#services" className="hover:bg-blue-700 px-3 py-2 rounded-md">
-        Services
-      </a>
-      <a href="#contact" className="hover:bg-blue-700 px-3 py-2 rounded-md">
-        Contact
-      </a>
+
       <Link
         to="/login"
         href="#contact"
