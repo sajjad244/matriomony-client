@@ -1,10 +1,12 @@
 import {useContext} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import AuthContext from "../../Provider/AuthContext";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const {createNewUser} = useContext(AuthContext);
+  const {createNewUser, updateUserProfile} = useContext(AuthContext);
+  //? for navigate path
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,12 +29,22 @@ const Register = () => {
 
     createNewUser(email, password, name, photoURL)
       .then((result) => {
-        const user = result.user;
-        console.log(user);
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        // update user profile
+        updateUserProfile({displayName: name, photoURL: photoURL})
+          .then(() => {
+            navigate("/");
+          })
+          .catch((err) => {
+            alert(err.code, "something went wrong");
+          });
+        toast.success("Thank you! For your Registration");
       })
       .catch((error) => {
         console.log(error.message);
       });
+    form.reset();
   };
 
   return (

@@ -12,7 +12,7 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Handle login logic here
+
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
@@ -21,6 +21,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate(location?.state || "/");
         toast.success(`Welcome successfully logged in.`);
       })
       .catch((error) => {

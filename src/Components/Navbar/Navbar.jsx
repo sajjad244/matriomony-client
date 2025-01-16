@@ -16,18 +16,10 @@ const Navbar = () => {
 
   const links = (
     <>
-      <Link
-        to="/"
-        href="#contact"
-        className="hover:bg-blue-700 px-3 py-2 rounded-md"
-      >
+      <Link to="/" className="hover:bg-blue-700 px-3 py-2 rounded-md">
         Home
       </Link>
-      <Link
-        to="/biodatas"
-        href="#contact"
-        className="hover:bg-blue-700 px-3 py-2 rounded-md"
-      >
+      <Link to="/biodatas" className="hover:bg-blue-700 px-3 py-2 rounded-md">
         Biodatas
       </Link>
       <a href="#contact" className="hover:bg-blue-700 px-3 py-2 rounded-md">
@@ -47,21 +39,18 @@ const Navbar = () => {
           </button>
 
           <Link
-            to="/login"
-            href="#contact"
+            to="/dashboard"
             className="hover:bg-blue-700 px-3 py-2 rounded-md"
           >
             Dashboard
           </Link>
         </>
       ) : (
-        <Link
-          to="/login"
-          href="#contact"
-          className="hover:bg-blue-700 px-3 py-2 rounded-md"
-        >
-          Login
-        </Link>
+        <>
+          <Link to="/login" className="hover:bg-blue-700 px-3 py-2 rounded-md">
+            Login
+          </Link>
+        </>
       )}
     </>
   );
