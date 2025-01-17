@@ -3,7 +3,8 @@ import MainLayouts from "../Layouts/MainLayouts";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
-import Dashboard from "../Pages/Dashboard/Dashboard";
+
+import DashboardLayout from "../Layouts/DashboardLayout";
 import PrivetRoutes from "./PrivetRoutes";
 
 const router = createBrowserRouter([
@@ -23,15 +24,15 @@ const router = createBrowserRouter([
         path: "register",
         element: <Register></Register>,
       },
-      {
-        path: "dashboard",
-        element: (
-          <PrivetRoutes>
-            <Dashboard></Dashboard>
-          </PrivetRoutes>
-        ),
-      },
     ],
+  },
+  {
+    path: "dashboard",
+    element: (
+      <PrivetRoutes>
+        <DashboardLayout></DashboardLayout>
+      </PrivetRoutes>
+    ),
   },
 ]);
 export default router;

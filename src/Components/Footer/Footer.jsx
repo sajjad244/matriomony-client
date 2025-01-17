@@ -1,10 +1,10 @@
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-gray-200 py-10">
+    <footer className="bg-gray-800 text-gray-200 py-10 mt-20">
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* About Section */}
-          <div>
+          <div id="about">
             <h3 className="text-xl font-bold mb-4">About Us</h3>
             <p className="text-gray-400 text-sm">
               We are dedicated to helping people find their perfect match and
@@ -44,7 +44,7 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Contact Info</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <span className="font-medium">Email:</span> support@example.com
+                <span className="font-medium">Email:</span> matrimony@pri.com
               </li>
               <li>
                 <span className="font-medium">Phone:</span> +123 456 7890
