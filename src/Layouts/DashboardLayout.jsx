@@ -4,9 +4,9 @@ const DashboardLayout = () => {
   return (
     <div className="flex flex-col md:flex-row">
       {/* Dashboard sidebar */}
-      <div className="w-full md:w-64 h-auto md:h-screen bg-gray-100">
+      <div className="w-full md:w-64 h-auto md:min-h-screen bg-gray-100">
         <Link to="/">
-          <h1 className="text-xl md:text-2xl font-bold p-3 mt-3 ml-5 bg-purple-400 rounded-full">
+          <h1 className="text-xl md:text-2xl font-bold p-3 mt-3 ml-5 ">
             Matrimony
           </h1>
         </Link>
@@ -22,10 +22,10 @@ const DashboardLayout = () => {
           </li>
           <li>
             <Link
-              to="/"
+              to="/dashboard/editBioData"
               className="hover:bg-blue-700 px-3 py-2 rounded-md font-semibold block"
             >
-              Profile
+              EditBioData
             </Link>
           </li>
           <li>
@@ -38,7 +38,7 @@ const DashboardLayout = () => {
           </li>
         </ul>
       </div>
-      <div className="flex-1 bg-red-500 p-4 h-screen">
+      <div className="flex-1  p-4 min-h-screen">
         <Outlet></Outlet>
       </div>
     </div>

@@ -6,6 +6,7 @@ import Register from "../Pages/Register/Register";
 
 import DashboardLayout from "../Layouts/DashboardLayout";
 import PrivetRoutes from "./PrivetRoutes";
+import EditBio from "../Pages/Dashboard/UserDashboard/EditBio";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,12 @@ const router = createBrowserRouter([
         <DashboardLayout></DashboardLayout>
       </PrivetRoutes>
     ),
+    children: [
+      {
+        path: "editBioData",
+        element: <EditBio></EditBio>,
+      },
+    ],
   },
 ]);
 export default router;
