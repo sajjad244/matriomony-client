@@ -1,9 +1,46 @@
+import {useContext} from "react";
+import AuthContext from "../../../Provider/AuthContext";
+import UseAxiosSecure from "../../../Hooks/UseAxiosSecure";
+import toast from "react-hot-toast";
+
 const EditBio = () => {
+  const {user} = useContext(AuthContext);
+  const axiosSecure = UseAxiosSecure();
+
+  // Handle form submission
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // Handle form submission
+    const form = event.target;
+    const formData = new FormData(form);
+    const bioFormData = Object.fromEntries(formData.entries());
+
+    // customerDetails
+    const customerDetails = {
+      bioFormData,
+      email: user.email,
+      name: user.displayName,
+      photoURL: user.photoURL,
+    };
+
+    // ! save bio data in database
+    try {
+      // post req
+      await axiosSecure.post("/bioData", customerDetails);
+      toast.success("Bio data updated successfully");
+      // post req
+    } catch (err) {
+      console.log(err);
+    }
+    form.reset();
+  };
+
   return (
     <div className="max-w-4xl mx-auto bg-gray-50 shadow-md rounded-lg p-6 mt-10">
       <h2 className="text-2xl font-bold mb-6">Edit Biodata</h2>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         {/* Biodata Type */}
         <div className="mb-4">
           <label
@@ -50,7 +87,7 @@ const EditBio = () => {
           <input
             type="url"
             id="profileImage"
-            name="profileImage"
+            name="img"
             className="w-full border-gray-300 rounded-md p-2"
           />
         </div>
@@ -204,7 +241,7 @@ const EditBio = () => {
           >
             <option value="">Select Division</option>
             <option value="dhaka">Dhaka</option>
-            <option value="chittagong">chittagong</option>
+            <option value="chittagong">Chittagong</option>
             <option value="rangpur">Rangpur</option>
             <option value="barisal">Barisal</option>
             <option value="khulna">Khulna</option>
@@ -228,7 +265,7 @@ const EditBio = () => {
           >
             <option value="">Select Division</option>
             <option value="dhaka">Dhaka</option>
-            <option value="chattagra">Chattagra</option>
+            <option value="chittagong">Chittagong</option>
             <option value="rangpur">Rangpur</option>
             <option value="barisal">Barisal</option>
             <option value="khulna">Khulna</option>
@@ -302,7 +339,8 @@ const EditBio = () => {
           <input
             type="email"
             id="contactEmail"
-            name="contactEmail"
+            name="email"
+            defaultValue={user?.email}
             className="w-full border-gray-300 rounded-md p-2"
             readOnly
           />
@@ -321,7 +359,7 @@ const EditBio = () => {
             id="contactNumber"
             name="contactNumber"
             className="w-full border-gray-300 rounded-md p-2"
-            readOnly
+            required
           />
         </div>
 

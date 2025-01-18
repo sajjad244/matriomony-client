@@ -2,11 +2,15 @@ import {useContext} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import AuthContext from "../../Provider/AuthContext";
 import toast from "react-hot-toast";
+import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
+import SocialLogin from "../../Shared/SocialLogin";
 
 const Register = () => {
   const {createNewUser, updateUserProfile} = useContext(AuthContext);
   //? for navigate path
   const navigate = useNavigate();
+  // hook Axios
+  const axiosPublic = UseAxiosPublic();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,8 +19,6 @@ const Register = () => {
     const password = form.password.value;
     const name = form.name.value;
     const photoURL = form.photoURL.value;
-
-    console.log(name, email, photoURL, password);
 
     //! Password validation regex
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
@@ -30,15 +32,29 @@ const Register = () => {
     createNewUser(email, password, name, photoURL)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
-        // update user profile
+
+        // update user profile ----->>>>>
         updateUserProfile({displayName: name, photoURL: photoURL})
           .then(() => {
-            navigate("/");
+            //! create user in database entry ---->>>>>>
+
+            const userInfo = {
+              name: name,
+              email: loggedUser.email,
+              photoURL: photoURL,
+            };
+
+            axiosPublic.post("/users", userInfo).then((res) => {
+              if (res.data.insertedId) {
+                console.log("User Created Successfully");
+                navigate("/");
+              }
+            });
           })
           .catch((err) => {
             alert(err.code, "something went wrong");
           });
+
         toast.success("Thank you! For your Registration");
       })
       .catch((error) => {
@@ -112,6 +128,8 @@ const Register = () => {
               placeholder="Enter your password"
             />
           </div>
+          {/* social login */}
+          <SocialLogin></SocialLogin>
 
           {/* Submit Button */}
           <button

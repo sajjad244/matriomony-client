@@ -11,6 +11,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import auth from "../Firebase/firebase.config";
+
 //! for google sign in
 const googleProvider = new GoogleAuthProvider();
 
@@ -46,12 +47,13 @@ const AuthProvider = ({children}) => {
   //  google sign in
 
   const googleLogIn = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   // observer user
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
       console.log("currentUser", currentUser);
       setLoading(false);

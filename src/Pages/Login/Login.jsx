@@ -2,6 +2,7 @@ import {Link, useLocation, useNavigate} from "react-router-dom";
 import toast from "react-hot-toast";
 import {useContext} from "react";
 import AuthContext from "../../Provider/AuthContext";
+import SocialLogin from "../../Shared/SocialLogin";
 
 const Login = () => {
   const {loginUser} = useContext(AuthContext);
@@ -70,6 +71,8 @@ const Login = () => {
               placeholder="Enter your password"
             />
           </div>
+          {/* social login */}
+          <SocialLogin></SocialLogin>
 
           {/* Submit Button */}
           <button
