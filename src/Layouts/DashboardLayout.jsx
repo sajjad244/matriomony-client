@@ -34,10 +34,10 @@ const DashboardLayout = () => {
             </li>
             <li>
               <Link
-                to="/"
+                to="/dashboard/viewBio"
                 className="hover:bg-blue-700 px-3 py-2 rounded-md font-semibold block"
               >
-                Settings
+                ViewBio
               </Link>
             </li>
           </ul>

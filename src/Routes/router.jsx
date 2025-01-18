@@ -8,6 +8,7 @@ import DashboardLayout from "../Layouts/DashboardLayout";
 import PrivetRoutes from "./PrivetRoutes";
 import EditBio from "../Pages/Dashboard/UserDashboard/EditBio";
 import ErrorPage from "../Shared/ErrorPage/ErrorPage";
+import ViewBio from "../Pages/Dashboard/UserDashboard/ViewBio";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "editBioData",
         element: <EditBio></EditBio>,
+      },
+      {
+        path: "viewBio",
+        element: <ViewBio></ViewBio>,
       },
     ],
   },
