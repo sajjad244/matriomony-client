@@ -106,7 +106,7 @@ const ViewCard = ({bio}) => {
       {/* Premium Button */}
       <div className="p-4 bg-gray-50">
         <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded">
-          Make Biodata Premium
+          Make BioData Premium
         </button>
       </div>
     </div>
