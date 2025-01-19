@@ -11,6 +11,7 @@ import ErrorPage from "../Shared/ErrorPage/ErrorPage";
 import ViewBio from "../Pages/Dashboard/UserDashboard/ViewBio";
 import BioPage from "../Pages/BIoDataPages/BioPage";
 import ViewDetails from "../Pages/BIoDataPages/ViewDetails";
+import Favorites from "../Pages/Dashboard/UserDashboard/Favorites";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: "viewBio",
         element: <ViewBio></ViewBio>,
+      },
+      {
+        path: "favorites",
+        element: <Favorites></Favorites>,
       },
     ],
   },

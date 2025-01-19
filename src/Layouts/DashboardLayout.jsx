@@ -37,7 +37,15 @@ const DashboardLayout = () => {
                 to="/dashboard/viewBio"
                 className="hover:bg-blue-700 px-3 py-2 rounded-md font-semibold block"
               >
-                ViewBio
+                View-Bio
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/dashboard/favorites"
+                className="hover:bg-blue-700 px-3 py-2 rounded-md font-semibold block"
+              >
+                Favorites BioData
               </Link>
             </li>
           </ul>

@@ -1,95 +1,96 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
+import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
+import {useQuery} from "@tanstack/react-query";
+import LoadingSpinner from "../../Shared/LoadingSpinner";
 
 const BioPage = () => {
+  const axiosSecure = UseAxiosSecure();
   const [filters, setFilters] = useState({
     ageRange: [18, 60],
     biodataType: "",
     division: "",
   });
 
-  const [biodatas, setBiodatas] = useState([
-    // Dummy biodata list
-    {
-      _id: 1,
-      type: "Male",
-      profileImage: "https://via.placeholder.com/100",
-      division: "Dhaka",
-      age: 25,
-      occupation: "Software Engineer",
+  // Fetch bioData using TanStack Query
+  const {data: biodatas, isLoading} = useQuery({
+    queryKey: ["bio"],
+    queryFn: async () => {
+      const {data} = await axiosSecure.get(`/bioDataAll`);
+      return data;
     },
-    {
-      _id: 2,
-      type: "Female",
-      profileImage: "https://via.placeholder.com/100",
-      division: "Chattagra",
-      age: 23,
-      occupation: "Teacher",
-    },
-    // Add more dummy biodatas
-  ]);
+  });
 
+  console.log(biodatas?.bioFormData);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
+  // Handle filter changes (only updates the state, no logic applied)
   const handleFilterChange = (key, value) => {
     setFilters({...filters, [key]: value});
   };
+
   return (
-    <div className="flex gap-4 p-6 h-screen container mx-auto">
+    <div className="md:flex  gap-4 p-6 container mx-auto">
       {/* Filter Section */}
-      <div className="w-1/4 bg-gray-100 p-4 rounded-md shadow-md">
+      <div className="w-full md:w-1/4 bg-gray-100 p-4 rounded-md shadow-md">
         <h2 className="text-lg font-bold mb-4">Filters</h2>
+
         {/* Age Range */}
         <div className="mb-4">
-          <label className="block text-sm font-semibold">Age Range</label>
-          <input
-            type="range"
-            min="18"
-            max="60"
-            step="1"
-            value={filters.ageRange[0]}
-            onChange={(e) =>
-              handleFilterChange("ageRange", [
-                e.target.value,
-                filters.ageRange[1],
-              ])
-            }
-            className="w-full"
-          />
-          <input
-            type="range"
-            min="18"
-            max="60"
-            step="1"
-            value={filters.ageRange[1]}
-            onChange={(e) =>
-              handleFilterChange("ageRange", [
-                filters.ageRange[0],
-                e.target.value,
-              ])
-            }
-            className="w-full"
-          />
-          <p>
-            {filters.ageRange[0]} - {filters.ageRange[1]}
-          </p>
+          <label className="block text-sm font-semibold mb-2">Age Range</label>
+          <div className="flex items-center gap-2">
+            <input
+              type="number"
+              min="18"
+              max="60"
+              value={filters.ageRange[0]}
+              onChange={(e) =>
+                handleFilterChange("ageRange", [
+                  parseInt(e.target.value),
+                  filters.ageRange[1],
+                ])
+              }
+              className="w-16 border p-2 rounded-md text-center"
+            />
+            <span>-</span>
+            <input
+              type="number"
+              min="18"
+              max="60"
+              value={filters.ageRange[1]}
+              onChange={(e) =>
+                handleFilterChange("ageRange", [
+                  filters.ageRange[0],
+                  parseInt(e.target.value),
+                ])
+              }
+              className="w-16 border p-2 rounded-md text-center"
+            />
+          </div>
         </div>
 
         {/* Biodata Type */}
         <div className="mb-4">
-          <label className="block text-sm font-semibold">Biodata Type</label>
+          <label className="block text-sm font-semibold mb-2">
+            Biodata Type
+          </label>
           <select
             value={filters.biodataType}
             onChange={(e) => handleFilterChange("biodataType", e.target.value)}
             className="w-full border p-2 rounded-md"
           >
             <option value="">All</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
           </select>
         </div>
 
         {/* Division */}
         <div className="mb-4">
-          <label className="block text-sm font-semibold">Division</label>
+          <label className="block text-sm font-semibold mb-2">Division</label>
           <select
             value={filters.division}
             onChange={(e) => handleFilterChange("division", e.target.value)}
@@ -97,7 +98,7 @@ const BioPage = () => {
           >
             <option value="">All</option>
             <option value="Dhaka">Dhaka</option>
-            <option value="Chattagra">Chattagra</option>
+            <option value="Chattagong">Chattagong</option>
             <option value="Rangpur">Rangpur</option>
             <option value="Barisal">Barisal</option>
             <option value="Khulna">Khulna</option>
@@ -107,43 +108,32 @@ const BioPage = () => {
         </div>
       </div>
 
-      {/* card */}
-      {/* Biodata List Section card*/}
+      {/* Biodata List Section */}
       <div className="w-3/4">
         <h2 className="text-lg font-bold mb-4">All Biodatas</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {biodatas
-            .filter((biodata) => {
-              const {ageRange, biodataType, division} = filters;
-              return (
-                (!biodataType || biodata.type === biodataType) &&
-                (!division || biodata.division === division) &&
-                biodata.age >= ageRange[0] &&
-                biodata.age <= ageRange[1]
-              );
-            })
-            .slice(0, 20)
-            .map((biodata) => (
-              <div
-                key={biodata.id}
-                className="bg-white p-4 rounded-md shadow-md flex flex-col items-center text-center"
-              >
-                <img
-                  src={biodata.profileImage}
-                  alt="Profile"
-                  className="w-24 h-24 rounded-full mb-2"
-                />
-                <h3 className="font-bold">{biodata.type}</h3>
-                <p>{biodata.division}</p>
-                <p>{biodata.age} years old</p>
-                <p>{biodata.occupation}</p>
-                <Link to={`/viewDetails/${biodata._id}`}>
-                  <button className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md">
-                    View Profile
-                  </button>
-                </Link>
-              </div>
-            ))}
+          {biodatas.map((biodata) => (
+            <div
+              key={biodata._id}
+              className="bg-white p-4 rounded-md shadow-md flex flex-col items-center text-center"
+            >
+              <img
+                src={biodata.bioFormData.img}
+                alt="Profile"
+                className="w-24 h-24 rounded-full mb-2"
+              />
+              <h3 className="font-bold">{biodata.bioFormData.name}</h3>
+              <p>{biodata?.bioFormData?.biodataType}</p>
+              <p>{biodata.bioFormData.permanentDivision}</p>
+              <p>{biodata.bioFormData.age} years old</p>
+              <p>{biodata.bioFormData.occupation}</p>
+              <Link to={`/viewDetails/${biodata._id}`}>
+                <button className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md">
+                  View Profile
+                </button>
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
     </div>
