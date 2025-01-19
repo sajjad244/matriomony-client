@@ -9,6 +9,8 @@ import PrivetRoutes from "./PrivetRoutes";
 import EditBio from "../Pages/Dashboard/UserDashboard/EditBio";
 import ErrorPage from "../Shared/ErrorPage/ErrorPage";
 import ViewBio from "../Pages/Dashboard/UserDashboard/ViewBio";
+import BioPage from "../Pages/BIoDataPages/BioPage";
+import ViewDetails from "../Pages/BIoDataPages/ViewDetails";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,18 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register></Register>,
+      },
+      {
+        path: "bioPage",
+        element: <BioPage></BioPage>,
+      },
+      {
+        path: "viewDetails/:id",
+        element: (
+          <PrivetRoutes>
+            <ViewDetails></ViewDetails>
+          </PrivetRoutes>
+        ),
       },
     ],
   },

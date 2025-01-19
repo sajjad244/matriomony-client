@@ -19,7 +19,7 @@ const Navbar = () => {
       <Link to="/" className="hover:bg-blue-700 px-3 py-2 rounded-md">
         Home
       </Link>
-      <Link to="/biodatas" className="hover:bg-blue-700 px-3 py-2 rounded-md">
+      <Link to="/bioPage" className="hover:bg-blue-700 px-3 py-2 rounded-md">
         Biodatas
       </Link>
       <a href="#contact" className="hover:bg-blue-700 px-3 py-2 rounded-md">
