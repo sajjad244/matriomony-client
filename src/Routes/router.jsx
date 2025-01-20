@@ -14,6 +14,7 @@ import ViewDetails from "../Pages/BIoDataPages/ViewDetails";
 import Favorites from "../Pages/Dashboard/UserDashboard/Favorites";
 import Checkout from "../Pages/Checkout/Checkout";
 import MyContact from "../Pages/Dashboard/UserDashboard/MyContact";
+import AllUsers from "../Pages/Dashboard/Admin/AllUsers";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,7 @@ const router = createBrowserRouter([
       </PrivetRoutes>
     ),
     children: [
+      //! users rotes
       {
         path: "editBioData",
         element: <EditBio></EditBio>,
@@ -74,6 +76,11 @@ const router = createBrowserRouter([
       {
         path: "favorites",
         element: <Favorites></Favorites>,
+      },
+      //! Admin rotes
+      {
+        path: "manageUser",
+        element: <AllUsers></AllUsers>,
       },
     ],
   },

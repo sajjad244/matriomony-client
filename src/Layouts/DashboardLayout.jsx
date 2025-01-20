@@ -5,7 +5,7 @@ import {useContext} from "react";
 
 const DashboardLayout = () => {
   const isAdmin = true;
-  const {user, logOut} = useContext(AuthContext);
+  const {logOut} = useContext(AuthContext);
 
   const handleLogOut = () => {
     logOut().then(() => {
@@ -27,7 +27,7 @@ const DashboardLayout = () => {
             </h1>
           </Link>
 
-          <ul className="mt-4 md:mt-10 ml-5 flex flex-col gap-1 md:gap-2 text-base md:text-lg">
+          <ul className="mt-4 md:mt-10 ml-5 flex flex-col gap-1 md:gap-2 md:text-sm lg:text-lg">
             {isAdmin ? (
               //! Admin Dashboard
               <>
