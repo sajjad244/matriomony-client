@@ -6,10 +6,10 @@ import UseAllData from "../../Hooks/AllData/UseAllData";
 const ViewDetails = () => {
   const {id} = useParams();
   const axiosSecure = UseAxiosSecure();
-  const [allData] = UseAllData(); // Fetch all bioData using TanStack Query
+  const [allData] = UseAllData(); // Fetch all bioData using TanStack Query and hook
 
   //! Fetch bioData using TanStack Query
-  const {data: singleData, isLoading} = useQuery({
+  const {data: singleData = {}, isLoading} = useQuery({
     queryKey: ["viewDetails", id],
     queryFn: async () => {
       const {data} = await axiosSecure.get(`/bioDataAll/${id}`);
@@ -20,6 +20,9 @@ const ViewDetails = () => {
   if (isLoading) {
     return <LoadingSpinner />;
   }
+  //! Fetch bioData using TanStack Query
+
+  console.log(singleData.bioFormData);
 
   return (
     <>
@@ -32,7 +35,7 @@ const ViewDetails = () => {
               <img
                 src={singleData?.bioFormData?.img}
                 alt={singleData?.bioFormData?.name}
-                className="w-full h-full rounded-full object-cover border shadow-lg"
+                className="w-full h-full rounded-lg object-cover border shadow-lg"
                 style={{aspectRatio: "1 / 1"}}
               />
             </div>
@@ -126,9 +129,11 @@ const ViewDetails = () => {
                 <button className="mt-5 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-green-500 ">
                   Add to Favorites
                 </button>
-                <button className="mt-5 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-green-500 ">
-                  Request Contact
-                </button>
+                <Link to={`/checkout/${singleData._id}`}>
+                  <button className="mt-5 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-green-500 ">
+                    Request Contact
+                  </button>
+                </Link>
               </div>
               {/*  */}
             </div>

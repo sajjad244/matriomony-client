@@ -12,6 +12,8 @@ import ViewBio from "../Pages/Dashboard/UserDashboard/ViewBio";
 import BioPage from "../Pages/BIoDataPages/BioPage";
 import ViewDetails from "../Pages/BIoDataPages/ViewDetails";
 import Favorites from "../Pages/Dashboard/UserDashboard/Favorites";
+import Checkout from "../Pages/Checkout/Checkout";
+import MyContact from "../Pages/Dashboard/UserDashboard/MyContact";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,10 @@ const router = createBrowserRouter([
           </PrivetRoutes>
         ),
       },
+      {
+        path: "checkout/:id",
+        element: <Checkout></Checkout>,
+      },
     ],
   },
   {
@@ -60,6 +66,10 @@ const router = createBrowserRouter([
       {
         path: "viewBio",
         element: <ViewBio></ViewBio>,
+      },
+      {
+        path: "myContact",
+        element: <MyContact></MyContact>,
       },
       {
         path: "favorites",
