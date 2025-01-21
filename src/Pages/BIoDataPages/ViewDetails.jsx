@@ -1,18 +1,21 @@
 import {Link, useParams} from "react-router-dom";
-import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 import {useQuery} from "@tanstack/react-query";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
 import UseAllData from "../../Hooks/AllData/UseAllData";
+import usePremium from "../../Hooks/premium/usePremium";
+import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
+import toast from "react-hot-toast";
 const ViewDetails = () => {
   const {id} = useParams();
-  const axiosSecure = UseAxiosSecure();
+  const axiosPublic = UseAxiosPublic();
   const [allData] = UseAllData(); // Fetch all bioData using TanStack Query and hook
+  const [premium] = usePremium(); // Fetch premium bioData using TanStack Query and hook
 
   //! Fetch bioData using TanStack Query
   const {data: singleData = {}, isLoading} = useQuery({
     queryKey: ["viewDetails", id],
     queryFn: async () => {
-      const {data} = await axiosSecure.get(`/bioDataAll/${id}`);
+      const {data} = await axiosPublic.get(`/bioDataAll/${id}`);
       return data;
     },
   });
@@ -22,7 +25,28 @@ const ViewDetails = () => {
   }
   //! Fetch bioData using TanStack Query
 
-  console.log(singleData.bioFormData);
+  // ?--------  post req for favorite -------->
+
+  const handleFavorite = async () => {
+    const favoriteData = {
+      bioDAtaId: singleData?.biodataId,
+      name: singleData?.bioFormData?.name,
+      permanentAddress: singleData?.bioFormData?.permanentDivision,
+      occupation: singleData?.bioFormData?.occupation,
+    };
+
+    // ! save favorite data in database
+    try {
+      // post req
+      await axiosPublic.post("/favorite", favoriteData);
+      toast.success("favorite Data added successfully");
+      // post req
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // ?--------  post req for favorite -------->
 
   return (
     <>
@@ -89,20 +113,18 @@ const ViewDetails = () => {
               </p>
               <p>
                 <strong className="text-gray-600">Email:</strong>{" "}
-                <a
-                  href={`mailto:${singleData?.bioFormData?.email}`}
-                  className="text-blue-500 underline"
-                >
-                  {singleData?.bioFormData?.email}
+                <a className="text-blue-500 underline">
+                  {premium
+                    ? singleData?.bioFormData?.email
+                    : "Premium Member Only"}
                 </a>
               </p>
               <p>
                 <strong className="text-gray-600">Contact Number:</strong>{" "}
-                <a
-                  href={`tel:${singleData?.bioFormData?.contactNumber}`}
-                  className="text-blue-500 underline"
-                >
-                  {singleData?.bioFormData?.contactNumber}
+                <a className="text-blue-500 underline">
+                  {premium
+                    ? singleData?.bioFormData?.contactNumber
+                    : "Premium Member Only"}
                 </a>
               </p>
             </div>
@@ -126,7 +148,10 @@ const ViewDetails = () => {
               </p>
               {/*  */}
               <div className="mt-5 flex gap-10">
-                <button className="mt-5 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-green-500 ">
+                <button
+                  onClick={handleFavorite}
+                  className="mt-5 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-green-500 "
+                >
                   Add to Favorites
                 </button>
                 <Link to={`/checkout/${singleData._id}`}>

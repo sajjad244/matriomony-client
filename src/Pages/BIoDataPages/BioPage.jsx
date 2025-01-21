@@ -1,11 +1,11 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
-import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 import {useQuery} from "@tanstack/react-query";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
+import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 
 const BioPage = () => {
-  const axiosSecure = UseAxiosSecure();
+  const axiosPublic = UseAxiosPublic();
   const [filters, setFilters] = useState({
     ageRange: [18, 60],
     biodataType: "",
@@ -16,12 +16,10 @@ const BioPage = () => {
   const {data: biodatas, isLoading} = useQuery({
     queryKey: ["bio"],
     queryFn: async () => {
-      const {data} = await axiosSecure.get(`/bioDataAll`);
+      const {data} = await axiosPublic.get(`/bioDataAll`);
       return data;
     },
   });
-
-  console.log(biodatas?.bioFormData);
 
   if (isLoading) {
     return <LoadingSpinner />;
