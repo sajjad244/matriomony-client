@@ -2,9 +2,10 @@ import toast, {Toaster} from "react-hot-toast";
 import {Link, Outlet} from "react-router-dom";
 import AuthContext from "../Provider/AuthContext";
 import {useContext} from "react";
+import useAdmin from "../Hooks/Admin/useAdmin";
 
 const DashboardLayout = () => {
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
   const {logOut} = useContext(AuthContext);
 
   const handleLogOut = () => {

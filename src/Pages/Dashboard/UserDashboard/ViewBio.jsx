@@ -21,7 +21,6 @@ const ViewBio = () => {
   if (isLoading) {
     return <LoadingSpinner></LoadingSpinner>;
   }
-  console.log(bioData);
 
   return (
     <div>

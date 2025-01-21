@@ -1,12 +1,12 @@
-import {useQuery, useMutation, useQueryClient} from "@tanstack/react-query";
+import {useQuery} from "@tanstack/react-query";
 import UseAxiosSecure from "../../../Hooks/UseAxiosSecure";
 import toast from "react-hot-toast";
+import LoadingSpinner from "../../../Shared/LoadingSpinner";
 
 const AllUsers = () => {
   const axiosSecure = UseAxiosSecure();
-  const queryClient = useQueryClient();
 
-  // Fetching users data
+  // Fetching users data from backend
   const {
     data: users = [],
     isLoading,
@@ -48,7 +48,7 @@ const AllUsers = () => {
   //? for making Admin Patch req to backend
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   return (
@@ -84,7 +84,7 @@ const AllUsers = () => {
                     className={`${
                       user?.role === "admin"
                         ? "bg-red-500 text-white px-3 py-1 rounded-md mr-2 hover"
-                        : "bg-blue-500 text-white px-3 py-1 rounded-md mr-2 hover:bg-blue-600"
+                        : "bg-blue-500 text-white px-3 py-1 rounded-md mr-2  hover:bg-green-600"
                     }`}
                     disabled={user?.role === "admin"}
                   >
@@ -93,10 +93,14 @@ const AllUsers = () => {
                   {/*  */}
                   <button
                     onClick={() => handleMakePremium(user)}
-                    className="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600"
+                    className={`${
+                      user?.role === "premium"
+                        ? "bg-yellow-500 text-white px-3 py-1 rounded-md mr-2 hover"
+                        : "bg-blue-500 text-white px-3 py-1 rounded-md mr-2 hover:bg-green-600"
+                    }`}
                     disabled={user?.role === "premium"}
                   >
-                    {user.isPremium ? "Premium" : "Make Premium"}
+                    {user?.role === "premium" ? "Premium" : "Make Premium"}
                   </button>
                 </td>
                 {/*  */}
