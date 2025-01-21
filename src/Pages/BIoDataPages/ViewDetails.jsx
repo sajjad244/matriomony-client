@@ -5,11 +5,14 @@ import UseAllData from "../../Hooks/AllData/UseAllData";
 import usePremium from "../../Hooks/premium/usePremium";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 import toast from "react-hot-toast";
+import {useContext} from "react";
+import AuthContext from "../../Provider/AuthContext";
 const ViewDetails = () => {
   const {id} = useParams();
   const axiosPublic = UseAxiosPublic();
   const [allData] = UseAllData(); // Fetch all bioData using TanStack Query and hook
   const [premium] = usePremium(); // Fetch premium bioData using TanStack Query and hook
+  const {user} = useContext(AuthContext);
 
   //! Fetch bioData using TanStack Query
   const {data: singleData = {}, isLoading} = useQuery({
@@ -31,6 +34,7 @@ const ViewDetails = () => {
     const favoriteData = {
       bioDAtaId: singleData?.biodataId,
       name: singleData?.bioFormData?.name,
+      email: user?.email,
       permanentAddress: singleData?.bioFormData?.permanentDivision,
       occupation: singleData?.bioFormData?.occupation,
     };
