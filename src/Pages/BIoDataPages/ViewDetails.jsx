@@ -28,6 +28,8 @@ const ViewDetails = () => {
   }
   //! Fetch bioData using TanStack Query
 
+  console.log(premium);
+
   // ?--------  post req for favorite -------->
 
   const handleFavorite = async () => {
@@ -159,7 +161,14 @@ const ViewDetails = () => {
                   Add to Favorites
                 </button>
                 <Link to={`/checkout/${singleData._id}`}>
-                  <button className="mt-5 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-green-500 ">
+                  <button
+                    disabled={premium}
+                    className={`mt-5 px-4 py-2 rounded-md text-white ${
+                      premium
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : "bg-blue-500 hover:bg-green-500"
+                    }`}
+                  >
                     Request Contact
                   </button>
                 </Link>

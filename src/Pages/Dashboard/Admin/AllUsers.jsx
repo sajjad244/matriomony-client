@@ -1,7 +1,7 @@
 import {useQuery} from "@tanstack/react-query";
 import UseAxiosSecure from "../../../Hooks/UseAxiosSecure";
-import toast from "react-hot-toast";
 import LoadingSpinner from "../../../Shared/LoadingSpinner";
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
   const axiosSecure = UseAxiosSecure();
@@ -26,7 +26,11 @@ const AllUsers = () => {
       console.log(res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
-        toast.success("User successfully made Admin!");
+        Swal.fire({
+          title: "User successfully made Admin!",
+          icon: "success",
+          draggable: true,
+        });
       }
     });
   };
@@ -40,7 +44,11 @@ const AllUsers = () => {
       console.log(res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
-        toast.success("User successfully made Admin!");
+        Swal.fire({
+          title: "User successfully made premium!",
+          icon: "success",
+          draggable: true,
+        });
       }
     });
   };

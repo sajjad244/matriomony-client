@@ -2,6 +2,7 @@ import {useContext} from "react";
 import AuthContext from "../../../Provider/AuthContext";
 import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
 import {useQuery} from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const Favorites = () => {
   const {user} = useContext(AuthContext);
@@ -21,9 +22,28 @@ const Favorites = () => {
 
   //! Handle delete action
   const handleDelete = (id) => {
-    axiosPublic.delete(`/favorite/${id}`).then((res) => {
-      if (res.data.deletedCount > 0) {
-        refetch();
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // delete
+        axiosPublic.delete(`/favorite/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+          }
+        });
+
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
       }
     });
   };
