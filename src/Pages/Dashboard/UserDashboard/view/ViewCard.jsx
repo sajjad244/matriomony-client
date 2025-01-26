@@ -1,10 +1,17 @@
+import {useContext} from "react";
+import AuthContext from "../../../../Provider/AuthContext";
+import UseAxiosSecure from "../../../../Hooks/UseAxiosSecure";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
+
 /* eslint-disable react/prop-types */
 const ViewCard = ({bio}) => {
+  const axiosSecure = UseAxiosSecure();
+  const {user} = useContext(AuthContext);
   const {
     biodataType,
     name,
     img,
-
     height,
     weight,
     dob,
@@ -21,6 +28,39 @@ const ViewCard = ({bio}) => {
     email,
     contactNumber,
   } = bio.bioFormData;
+
+  const requestHandler = async () => {
+    try {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, make it premium!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const bioData = {
+            bioDataId: bio.biodataId,
+          };
+          const {data} = await axiosSecure.patch(
+            `/users/${user?.email}`,
+            bioData
+          );
+          console.log(data);
+          Swal.fire({
+            title: "premium !",
+            text: "Your request has been send.",
+            icon: "success",
+          });
+        }
+      });
+    } catch (err) {
+      console.log(err.response.data);
+      toast.error(err.response.data);
+    }
+  };
 
   return (
     <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
@@ -105,7 +145,10 @@ const ViewCard = ({bio}) => {
 
       {/* Premium Button */}
       <div className="p-4 bg-gray-50">
-        <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded">
+        <button
+          onClick={requestHandler}
+          className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded"
+        >
           Make BioData Premium
         </button>
       </div>

@@ -3,6 +3,7 @@ import {Link, Outlet} from "react-router-dom";
 import AuthContext from "../Provider/AuthContext";
 import {useContext} from "react";
 import useAdmin from "../Hooks/Admin/useAdmin";
+import Dashboard from "../Pages/Dashboard/Dashboard";
 
 const DashboardLayout = () => {
   const [isAdmin] = useAdmin();
@@ -50,7 +51,7 @@ const DashboardLayout = () => {
                 </li>
                 <li>
                   <Link
-                    to="/dashboard/approvePremium"
+                    to="/dashboard/approvedPremium"
                     className="hover:bg-blue-700 px-3 py-2 rounded-md font-semibold block"
                   >
                     Approved Premium
@@ -123,7 +124,7 @@ const DashboardLayout = () => {
           </ul>
         </div>
         <div className="flex-1  p-4 min-h-screen">
-          {/*  */}
+          <Dashboard></Dashboard>
           <Outlet></Outlet>
         </div>
       </div>

@@ -60,7 +60,7 @@ const AllUsers = () => {
   }
 
   return (
-    <div className="container mx-auto p-6 bg-white shadow rounded-md h-screen">
+    <div className="container mx-auto p-6 bg-white  rounded-md h-screen">
       <h1 className="text-2xl font-bold mb-4 text-center">Manage Users</h1>
       <h2 className="text-lg text-gray-600 mb-6">
         Total Users: {users.length}

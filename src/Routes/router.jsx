@@ -3,7 +3,6 @@ import MainLayouts from "../Layouts/MainLayouts";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
-
 import DashboardLayout from "../Layouts/DashboardLayout";
 import PrivetRoutes from "./PrivetRoutes";
 import EditBio from "../Pages/Dashboard/UserDashboard/EditBio";
@@ -15,6 +14,8 @@ import Favorites from "../Pages/Dashboard/UserDashboard/Favorites";
 import Checkout from "../Pages/Checkout/Checkout";
 import MyContact from "../Pages/Dashboard/UserDashboard/MyContact";
 import AllUsers from "../Pages/Dashboard/Admin/AllUsers";
+import ApprovedPremium from "../Pages/Dashboard/Admin/ApprovedPremium";
+import AdminRoutes from "./AdminRoutes";
 
 const router = createBrowserRouter([
   {
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
     children: [
       //! users rotes
       {
-        path: "editBioData",
+        index: true,
         element: <EditBio></EditBio>,
       },
       {
@@ -80,9 +81,27 @@ const router = createBrowserRouter([
       //! Admin rotes
       {
         path: "manageUser",
-        element: <AllUsers></AllUsers>,
+        element: (
+          <PrivetRoutes>
+            <AdminRoutes>
+              <AllUsers></AllUsers>
+            </AdminRoutes>
+          </PrivetRoutes>
+        ),
+      },
+      {
+        path: "approvedPremium",
+        element: (
+          <PrivetRoutes>
+            <AdminRoutes>
+              <ApprovedPremium></ApprovedPremium>
+            </AdminRoutes>
+          </PrivetRoutes>
+        ),
       },
     ],
   },
 ]);
 export default router;
+
+// path: "editBioData",

@@ -23,12 +23,12 @@ const ViewDetails = () => {
     },
   });
 
+  console.log(singleData);
+
   if (isLoading) {
     return <LoadingSpinner />;
   }
   //! Fetch bioData using TanStack Query
-
-  console.log(premium);
 
   // ?--------  post req for favorite -------->
 
