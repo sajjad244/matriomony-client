@@ -1,13 +1,11 @@
-import {useContext} from "react";
-import AuthContext from "../../../../Provider/AuthContext";
-import UseAxiosSecure from "../../../../Hooks/UseAxiosSecure";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import UseAxiosPublic from "../../../../Hooks/UseAxiosPublic";
 
 /* eslint-disable react/prop-types */
 const ViewCard = ({bio}) => {
-  const axiosSecure = UseAxiosSecure();
-  const {user} = useContext(AuthContext);
+  const axiosPublic = UseAxiosPublic();
+
   const {
     biodataType,
     name,
@@ -31,7 +29,7 @@ const ViewCard = ({bio}) => {
 
   const requestHandler = async () => {
     try {
-      Swal.fire({
+      const result = await Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
         icon: "warning",
@@ -39,26 +37,20 @@ const ViewCard = ({bio}) => {
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes, make it premium!",
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          const bioData = {
-            bioDataId: bio.biodataId,
-          };
-          const {data} = await axiosSecure.patch(
-            `/users/${user?.email}`,
-            bioData
-          );
-          console.log(data);
-          Swal.fire({
-            title: "premium !",
-            text: "Your request has been send.",
-            icon: "success",
-          });
-        }
       });
+
+      if (result.isConfirmed) {
+        await axiosPublic.post(`/users/premium/request`, bio);
+        Swal.fire({
+          title: "Premium!",
+          text: "Your request has been sent.",
+          icon: "success",
+        });
+      }
     } catch (err) {
-      console.log(err.response.data);
-      toast.error(err.response.data);
+      if (err.response) {
+        toast.error(err.response.data.message);
+      }
     }
   };
 
