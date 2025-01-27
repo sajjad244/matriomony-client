@@ -18,8 +18,6 @@ const Favorites = () => {
     },
   });
 
-  console.log(favorites);
-
   //! Handle delete action
   const handleDelete = (id) => {
     Swal.fire({
@@ -64,7 +62,7 @@ const Favorites = () => {
           </thead>
           <tbody>
             {favorites.map((item) => (
-              <tr key={item.id} className="text-center">
+              <tr key={item._id} className="text-center">
                 <td className="border px-4 py-2">{item.name}</td>
                 <td className="border px-4 py-2">{item.bioDAtaId}</td>
                 <td className="border px-4 py-2">{item.permanentAddress}</td>

@@ -27,6 +27,8 @@ const ViewCard = ({bio}) => {
     contactNumber,
   } = bio.bioFormData;
 
+  console.log(bio);
+
   const requestHandler = async () => {
     try {
       const result = await Swal.fire({
@@ -67,6 +69,7 @@ const ViewCard = ({bio}) => {
           <h2 className="text-2xl font-semibold">{name}</h2>
           <p className="text-sm">{biodataType}</p>
         </div>
+        <p>{bio._id}</p>
       </div>
 
       {/* Biodata Information */}
