@@ -10,6 +10,7 @@ const BioPage = () => {
     ageRange: [18, 60],
     biodataType: "",
     division: "",
+    searchQuery: "",
   });
 
   // Fetch bioData using TanStack Query
@@ -25,13 +26,45 @@ const BioPage = () => {
     return <LoadingSpinner />;
   }
 
-  // Handle filter changes (only updates the state, no logic applied)
+  // Handle filter changes (updates state)
   const handleFilterChange = (key, value) => {
     setFilters({...filters, [key]: value});
   };
 
+  // Filter biodatas based on search and filters
+  const filteredBiodatas = biodatas.filter((biodata) => {
+    const {
+      ageRange: [minAge, maxAge],
+      biodataType,
+      division,
+      searchQuery,
+    } = filters;
+
+    const {
+      age,
+      biodataType: type,
+      name,
+      permanentDivision,
+    } = biodata.bioFormData;
+
+    return (
+      // Filter by age range
+      parseInt(age) >= minAge &&
+      parseInt(age) <= maxAge &&
+      // Filter by biodata type (male, female, etc.)
+      (biodataType === "" ||
+        type.toLowerCase() === biodataType.toLowerCase()) &&
+      // Filter by division
+      (division === "" ||
+        permanentDivision.toLowerCase() === division.toLowerCase()) &&
+      // Filter by search query (name or biodataType match)
+      (name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        type.toLowerCase().includes(searchQuery.toLowerCase()))
+    );
+  });
+
   return (
-    <div className="md:flex  gap-4 p-6 container mx-auto">
+    <div className="md:flex gap-4 p-6 container mx-auto">
       {/* Filter Section */}
       <div className="w-full md:w-1/4 bg-gray-100 p-4 rounded-md shadow-md">
         <h2 className="text-lg font-bold mb-4">Filters</h2>
@@ -42,8 +75,8 @@ const BioPage = () => {
           <div className="flex items-center gap-2">
             <input
               type="number"
-              min="18"
-              max="60"
+              min="10"
+              max="99"
               value={filters.ageRange[0]}
               onChange={(e) =>
                 handleFilterChange("ageRange", [
@@ -56,8 +89,8 @@ const BioPage = () => {
             <span>-</span>
             <input
               type="number"
-              min="18"
-              max="60"
+              min="10"
+              max="99"
               value={filters.ageRange[1]}
               onChange={(e) =>
                 handleFilterChange("ageRange", [
@@ -83,6 +116,7 @@ const BioPage = () => {
             <option value="">All</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
+            <option value="married couple">Married Couple</option>
           </select>
         </div>
 
@@ -104,13 +138,25 @@ const BioPage = () => {
             <option value="Sylhet">Sylhet</option>
           </select>
         </div>
+
+        {/* Search Bar */}
+        <div className="mb-4">
+          <label className="block text-sm font-semibold mb-2">Search</label>
+          <input
+            type="text"
+            placeholder="Search by name or type..."
+            value={filters.searchQuery}
+            onChange={(e) => handleFilterChange("searchQuery", e.target.value)}
+            className="w-full border p-2 rounded-md"
+          />
+        </div>
       </div>
 
       {/* Biodata List Section */}
       <div className="w-3/4">
         <h2 className="text-lg font-bold mb-4">All Biodatas</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {biodatas.map((biodata) => (
+          {filteredBiodatas.map((biodata) => (
             <div
               key={biodata._id}
               className="bg-white p-4 rounded-md shadow-md flex flex-col items-center text-center"
