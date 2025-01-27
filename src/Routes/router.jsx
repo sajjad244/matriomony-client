@@ -64,19 +64,36 @@ const router = createBrowserRouter([
       //! users rotes
       {
         index: true,
-        element: <EditBio></EditBio>,
+        element: (
+          <PrivetRoutes>
+            <EditBio></EditBio>
+          </PrivetRoutes>
+        ),
       },
       {
         path: "viewBio",
-        element: <ViewBio></ViewBio>,
+
+        element: (
+          <PrivetRoutes>
+            <ViewBio></ViewBio>
+          </PrivetRoutes>
+        ),
       },
       {
         path: "myContact",
-        element: <MyContact></MyContact>,
+        element: (
+          <PrivetRoutes>
+            <MyContact></MyContact>
+          </PrivetRoutes>
+        ),
       },
       {
         path: "favorites",
-        element: <Favorites></Favorites>,
+        element: (
+          <PrivetRoutes>
+            <Favorites></Favorites>
+          </PrivetRoutes>
+        ),
       },
       //! Admin rotes
       {
