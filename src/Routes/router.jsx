@@ -16,6 +16,7 @@ import MyContact from "../Pages/Dashboard/UserDashboard/MyContact";
 import AllUsers from "../Pages/Dashboard/Admin/AllUsers";
 import ApprovedPremium from "../Pages/Dashboard/Admin/ApprovedPremium";
 import AdminRoutes from "./AdminRoutes";
+import AdminDashboard from "../Pages/Dashboard/Admin/AdminDashboard";
 
 const router = createBrowserRouter([
   {
@@ -63,7 +64,7 @@ const router = createBrowserRouter([
     children: [
       //! users rotes
       {
-        index: true,
+        path: "editBioData",
         element: (
           <PrivetRoutes>
             <EditBio></EditBio>
@@ -116,9 +117,17 @@ const router = createBrowserRouter([
           </PrivetRoutes>
         ),
       },
+      {
+        path: "adminDashboard",
+        element: (
+          <PrivetRoutes>
+            <AdminRoutes>
+              <AdminDashboard></AdminDashboard>
+            </AdminRoutes>
+          </PrivetRoutes>
+        ),
+      },
     ],
   },
 ]);
 export default router;
-
-// path: "editBioData",

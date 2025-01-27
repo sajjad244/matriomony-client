@@ -22,8 +22,6 @@ const ViewBio = () => {
     return <LoadingSpinner></LoadingSpinner>;
   }
 
-  console.log(bioData);
-
   return (
     <div>
       {bioData && bioData.length > 0 ? (

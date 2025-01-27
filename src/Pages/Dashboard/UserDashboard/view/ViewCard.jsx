@@ -27,8 +27,6 @@ const ViewCard = ({bio}) => {
     contactNumber,
   } = bio.bioFormData;
 
-  console.log(bio);
-
   const requestHandler = async () => {
     try {
       const result = await Swal.fire({
