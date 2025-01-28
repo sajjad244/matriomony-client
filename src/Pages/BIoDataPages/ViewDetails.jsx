@@ -23,8 +23,6 @@ const ViewDetails = () => {
     },
   });
 
-  console.log(singleData);
-
   if (isLoading) {
     return <LoadingSpinner />;
   }
