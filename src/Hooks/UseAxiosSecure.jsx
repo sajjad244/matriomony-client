@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import AuthContext from "../Provider/AuthContext";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://matriomony-server.vercel.app",
 });
 
 const UseAxiosSecure = () => {

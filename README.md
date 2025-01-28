@@ -55,9 +55,9 @@ Matrimony Client is a full-stack web application designed for connecting individ
 
 - **Stripe API** – Integrated for handling payments for premium memberships.
 
-### Action:
+### live:
 
-- live `http://your-live-site-link.com`
+- `https://matrimony-project-80f8d.web.app/`
 
 ## 🚗 Installation
 
