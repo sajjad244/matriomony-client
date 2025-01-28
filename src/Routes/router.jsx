@@ -17,6 +17,7 @@ import AllUsers from "../Pages/Dashboard/Admin/AllUsers";
 import ApprovedPremium from "../Pages/Dashboard/Admin/ApprovedPremium";
 import AdminRoutes from "./AdminRoutes";
 import AdminDashboard from "../Pages/Dashboard/Admin/AdminDashboard";
+import ApprovedContact from "../Pages/Dashboard/Admin/ApprovedContact";
 
 const router = createBrowserRouter([
   {
@@ -123,6 +124,16 @@ const router = createBrowserRouter([
           <PrivetRoutes>
             <AdminRoutes>
               <AdminDashboard></AdminDashboard>
+            </AdminRoutes>
+          </PrivetRoutes>
+        ),
+      },
+      {
+        path: "approveContact",
+        element: (
+          <PrivetRoutes>
+            <AdminRoutes>
+              <ApprovedContact></ApprovedContact>
             </AdminRoutes>
           </PrivetRoutes>
         ),

@@ -16,7 +16,7 @@ const Checkout = () => {
   const axiosPublic = UseAxiosPublic();
 
   //! Fetch bioData using TanStack Query
-  const {data: payingData = {}} = useQuery({
+  const {data: payingData = {}, refetch} = useQuery({
     queryKey: ["payingData", id],
     queryFn: async () => {
       const {data} = await axiosPublic.get(`/bioDataAll/${id}`);
@@ -79,7 +79,10 @@ const Checkout = () => {
 
             {/* stripe */}
             <Elements stripe={stripePromise}>
-              <CheckoutForm payingInfo={payingInfo}></CheckoutForm>
+              <CheckoutForm
+                payingInfo={payingInfo}
+                refetch={refetch}
+              ></CheckoutForm>
             </Elements>
             {/* stripe */}
           </div>

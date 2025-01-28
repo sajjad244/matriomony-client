@@ -3,24 +3,29 @@ import {CardElement, useElements, useStripe} from "@stripe/react-stripe-js";
 import {useContext, useEffect, useState} from "react";
 import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 import AuthContext from "../../Provider/AuthContext";
+import toast from "react-hot-toast";
 
-const CheckoutForm = ({payingInfo}) => {
+const CheckoutForm = ({payingInfo, refetch}) => {
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState("");
+  const [isProcessing, setIsProcessing] = useState(false); // Add loading state
   const {user} = useContext(AuthContext);
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = UseAxiosSecure();
   const totalPrice = payingInfo.amount;
 
+  // Fetch the clientSecret
   useEffect(() => {
-    axiosSecure
-      .post("/create-payment-intent", {price: totalPrice})
-      .then((res) => {
-        console.log(res.data.clientSecret);
-        setClientSecret(res.data.clientSecret);
-      });
+    if (totalPrice > 0) {
+      axiosSecure
+        .post("/create-payment-intent", {price: totalPrice})
+        .then((res) => {
+          console.log(res.data.clientSecret);
+          setClientSecret(res.data.clientSecret);
+        });
+    }
   }, [axiosSecure, totalPrice]);
 
   const handleSubmit = async (event) => {
@@ -31,10 +36,11 @@ const CheckoutForm = ({payingInfo}) => {
     }
 
     const card = elements.getElement(CardElement);
-
-    if (card == null) {
+    if (!card) {
       return;
     }
+
+    setIsProcessing(true); // Disable button when processing
 
     const {error, paymentMethod} = await stripe.createPaymentMethod({
       type: "card",
@@ -44,13 +50,14 @@ const CheckoutForm = ({payingInfo}) => {
     if (error) {
       console.log("[payment error]", error);
       setError(error.message);
+      setIsProcessing(false); // Enable button
+      return;
     } else {
       console.log("[PaymentMethod]", paymentMethod);
       setError("");
     }
 
     // Confirm Card Payment
-
     const {paymentIntent, error: confirmError} =
       await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -64,27 +71,32 @@ const CheckoutForm = ({payingInfo}) => {
 
     if (confirmError) {
       console.log("[confirm error]", confirmError);
-    } else {
-      console.log("[paymentIntent]", paymentIntent);
-
-      if (paymentIntent.status === "succeeded") {
-        console.log("transaction successful", paymentIntent.id);
-        setTransactionId(paymentIntent.id);
-
-        // now save the payment in the database
-
-        const payment = {
-          transactionId: paymentIntent.id,
-          email: user?.email,
-          amount: payingInfo.amount,
-          payingInfo: payingInfo,
-          status: "Pending",
-        };
-
-        const res = await axiosSecure.post("/payments", payment);
-        console.log("payment-save--->>>", res);
-      }
+      setError(confirmError.message);
+      setIsProcessing(false); // Enable button
+      return;
     }
+
+    console.log("[paymentIntent]", paymentIntent);
+
+    if (paymentIntent.status === "succeeded") {
+      console.log("transaction successful", paymentIntent.id);
+      setTransactionId(paymentIntent.id);
+
+      // Save the payment in the database
+      const payment = {
+        transactionId: paymentIntent.id,
+        email: user?.email,
+        amount: payingInfo.amount,
+        payingInfo: payingInfo,
+        status: "Pending",
+      };
+
+      const res = await axiosSecure.post("/payments", payment);
+      refetch();
+      toast.success("Payment Successful", res);
+    }
+
+    setIsProcessing(false); // Enable button
   };
 
   return (
@@ -108,9 +120,9 @@ const CheckoutForm = ({payingInfo}) => {
       <button
         className="w-full py-3 bg-blue-500 text-white font-medium rounded-md hover:bg-blue-700 transition duration-200 mt-5"
         type="submit"
-        disabled={!stripe || !clientSecret}
+        disabled={!stripe || !clientSecret || isProcessing} // Disable button based on state
       >
-        Pay 5$
+        {isProcessing ? "Processing..." : "Pay $5"} {/* Show loading state */}
       </button>
 
       <p className="text-red-600">{error}</p>
