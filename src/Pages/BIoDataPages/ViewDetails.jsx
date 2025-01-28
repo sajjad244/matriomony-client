@@ -198,7 +198,7 @@ const ViewDetails = () => {
                 <img
                   src={data.bioFormData.img}
                   alt={data.bioFormData.name}
-                  className="w-24 h-24 rounded-full mb-4"
+                  className="w-24 h-24 rounded-full mb-4 object-cover"
                 />
                 <h3 className="font-semibold text-lg mb-2">
                   {data.bioFormData.name}

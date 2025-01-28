@@ -1,11 +1,9 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
-import {useQuery} from "@tanstack/react-query";
-import LoadingSpinner from "../../Shared/LoadingSpinner";
-import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
+import UseAllData from "../../Hooks/AllData/UseAllData";
 
 const BioPage = () => {
-  const axiosPublic = UseAxiosPublic();
+  const [allBioData] = UseAllData();
   const [filters, setFilters] = useState({
     ageRange: [18, 60],
     biodataType: "",
@@ -13,33 +11,19 @@ const BioPage = () => {
     searchQuery: "",
   });
 
-  // Fetch bioData using TanStack Query
-  const {data: biodatas, isLoading} = useQuery({
-    queryKey: ["bio"],
-    queryFn: async () => {
-      const {data} = await axiosPublic.get(`/bioDataAll`);
-      return data;
-    },
-  });
-
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
-
   // Handle filter changes (updates state)
   const handleFilterChange = (key, value) => {
     setFilters({...filters, [key]: value});
   };
 
-  // Filter biodatas based on search and filters
-  const filteredBiodatas = biodatas.filter((biodata) => {
+  // Filter biodatas based on filters
+  const filteredBiodatas = allBioData.filter((biodata) => {
     const {
       ageRange: [minAge, maxAge],
       biodataType,
       division,
       searchQuery,
     } = filters;
-
     const {
       age,
       biodataType: type,
@@ -153,8 +137,8 @@ const BioPage = () => {
       </div>
 
       {/* Biodata List Section */}
-      <div className="w-3/4">
-        <h2 className="text-lg font-bold mb-4">All Biodatas</h2>
+      <div className="w-full md:w-3/4">
+        <h2 className="text-lg font-bold mb-4">Filtered Biodatas</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredBiodatas.map((biodata) => (
             <div
@@ -164,7 +148,7 @@ const BioPage = () => {
               <img
                 src={biodata.bioFormData.img}
                 alt="Profile"
-                className="w-24 h-24 rounded-full mb-2"
+                className="w-24 h-24 rounded-full mb-2 object-cover"
               />
               <h3 className="font-bold">{biodata.bioFormData.name}</h3>
               <p>{biodata?.bioFormData?.biodataType}</p>

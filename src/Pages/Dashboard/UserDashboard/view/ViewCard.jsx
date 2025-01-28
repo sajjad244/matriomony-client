@@ -61,13 +61,12 @@ const ViewCard = ({bio}) => {
         <img
           src={img}
           alt={`${name}'s profile`}
-          className="w-24 h-24 rounded-full border-4 border-white"
+          className="w-24 h-24 rounded-full border-4 border-white object-cover"
         />
         <div className="ml-4 text-white">
           <h2 className="text-2xl font-semibold">{name}</h2>
           <p className="text-sm">{biodataType}</p>
         </div>
-        <p>{bio._id}</p>
       </div>
 
       {/* Biodata Information */}

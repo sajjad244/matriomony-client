@@ -42,11 +42,11 @@ const PremiumMember = () => {
               className="bg-white shadow-lg rounded-lg overflow-hidden"
             >
               {/* Member Image */}
-              <div className="flex justify-center bg-gradient-to-r from-blue-500 to-purple-500 p-4">
+              <div className="flex justify-center bg-gradient-to-r from-blue-400 to-purple-500 p-4">
                 <img
                   src={member.bioFormData?.img}
                   alt={member.bioFormData?.name}
-                  className="w-24 h-24 rounded-full border-4 border-white"
+                  className="w-24 h-24 rounded-full border-4 border-white object-cover"
                 />
               </div>
 

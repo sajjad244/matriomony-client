@@ -53,7 +53,7 @@ const ApprovedPremium = () => {
         <tbody>
           {requestedData.length > 0 ? (
             requestedData.map((request) => (
-              <tr key={request.email}>
+              <tr key={request._id}>
                 <td className="border px-4 py-2">{request.name}</td>
                 <td className="border px-4 py-2">{request.email}</td>
                 <td className="border px-4 py-2">{request.biodataId}</td>
