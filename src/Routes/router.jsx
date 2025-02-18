@@ -43,15 +43,15 @@ const router = createBrowserRouter([
       },
       {
         path: "viewDetails/:id",
-        element: (
-          <PrivetRoutes>
-            <ViewDetails></ViewDetails>
-          </PrivetRoutes>
-        ),
+        element: <ViewDetails></ViewDetails>,
       },
       {
         path: "checkout/:id",
-        element: <Checkout></Checkout>,
+        element: (
+          <PrivetRoutes>
+            <Checkout></Checkout>
+          </PrivetRoutes>
+        ),
       },
     ],
   },
