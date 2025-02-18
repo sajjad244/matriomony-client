@@ -59,6 +59,17 @@ Matrimony Client is a full-stack web application designed for connecting individ
 
 - `https://matrimony-project-80f8d.web.app/`
 
+## Credentials
+
+- **Admin Email**: `admin@mail.com`
+- **Admin Password**: `aA12345`
+
+## 📝 Contributing
+
+We welcome contributions to the Matrimony Client project. If you have any suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
+
+## 📄 License
+
 ## 🚗 Installation
 
 To run the project locally, follow these steps:

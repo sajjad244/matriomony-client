@@ -16,7 +16,7 @@ const SuccessCounter = () => {
   ).length;
 
   return (
-    <div className="container mx-auto my-10 dark:bg-gray-900">
+    <div className="container mx-auto my-10 p-5 dark:bg-gray-900">
       <h2 className="text-3xl font-extrabold text-gray-800 dark:text-gray-100 text-center mb-10">
         Success Counter
       </h2>

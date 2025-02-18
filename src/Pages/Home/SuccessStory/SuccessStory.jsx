@@ -88,8 +88,8 @@ const SuccessStory = () => {
   );
 
   return (
-    <div className="container mx-auto my-10">
-      <h2 className="text-3xl font-extrabold text-gray-800 text-center mb-5">
+    <div className="container mx-auto my-10  dark:bg-gray-900 p-5">
+      <h2 className="text-3xl font-extrabold text-gray-800 dark:text-gray-100 text-center mb-5">
         Success Stories
       </h2>
 
@@ -97,7 +97,7 @@ const SuccessStory = () => {
       <div className="text-center mb-5">
         <label
           htmlFor="sortOrder"
-          className="text-lg font-medium text-gray-700"
+          className="text-lg font-medium text-gray-700 dark:text-gray-200"
         >
           Sort By Marriage Date:
         </label>
@@ -105,7 +105,7 @@ const SuccessStory = () => {
           id="sortOrder"
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value)}
-          className="ml-3 p-2 border rounded shadow-sm"
+          className="ml-3 p-2 border rounded shadow-sm dark:bg-gray-800 dark:text-gray-200"
         >
           <option value="desc">Descending</option>
           <option value="asc">Ascending</option>
@@ -116,20 +116,20 @@ const SuccessStory = () => {
         {sortedStories.map((story) => (
           <div
             key={story._id}
-            className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center text-center"
+            className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 flex flex-col items-center text-center"
           >
             {/* Couple Image */}
             <img
               src={story.bioFormData?.img || "https://via.placeholder.com/150"}
               alt={story.bioFormData?.name}
-              className="w-24 h-24 rounded-full border-2 border-gray-300 mb-4 object-cover"
+              className="w-24 h-24 rounded-full border-4 border-gray-300 mb-4 object-cover"
             />
             {/* Couple Name */}
-            <h3 className="text-xl font-semibold text-gray-800">
+            <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
               {story.bioFormData?.name || "Anonymous Couple"}
             </h3>
             {/* Marriage Date */}
-            <p className="text-gray-600 mt-1">
+            <p className="text-gray-600 mt-1 dark:text-gray-400">
               <strong>Marriage Date:</strong>{" "}
               {new Date(story.bioFormData?.marriageDate).toLocaleDateString() ||
                 "N/A"}
@@ -143,7 +143,7 @@ const SuccessStory = () => {
               ))}
             </div>
             {/* Success Story */}
-            <p className="text-gray-700 mt-3 text-sm">
+            <p className="text-gray-700 mt-3 text-sm dark:text-gray-300">
               {story.bioFormData?.successStory || "No story shared."}
             </p>
           </div>
