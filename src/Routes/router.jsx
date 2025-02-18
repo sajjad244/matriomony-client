@@ -18,7 +18,6 @@ import ApprovedPremium from "../Pages/Dashboard/Admin/ApprovedPremium";
 import AdminRoutes from "./AdminRoutes";
 import AdminDashboard from "../Pages/Dashboard/Admin/AdminDashboard";
 import ApprovedContact from "../Pages/Dashboard/Admin/ApprovedContact";
-import ContactUs from "../Pages/Home/ContactUs/ContactUs";
 
 const router = createBrowserRouter([
   {
