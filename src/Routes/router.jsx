@@ -18,6 +18,7 @@ import ApprovedPremium from "../Pages/Dashboard/Admin/ApprovedPremium";
 import AdminRoutes from "./AdminRoutes";
 import AdminDashboard from "../Pages/Dashboard/Admin/AdminDashboard";
 import ApprovedContact from "../Pages/Dashboard/Admin/ApprovedContact";
+import UserProfile from "../Pages/Dashboard/UserDashboard/UserProfile";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,14 @@ const router = createBrowserRouter([
     ),
     children: [
       //! users rotes
+      {
+        path: "userProfile",
+        element: (
+          <PrivetRoutes>
+            <UserProfile></UserProfile>
+          </PrivetRoutes>
+        ),
+      },
       {
         path: "editBioData",
         element: (

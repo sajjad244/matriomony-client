@@ -20,9 +20,9 @@ const DashboardLayout = () => {
       <Toaster />
       <div className="flex flex-col md:flex-row">
         {/* Dashboard sidebar */}
-        <div className="w-full md:w-64 h-auto md:min-h-screen bg-gray-100">
+        <div className="w-full md:w-64 h-auto md:min-h-screen bg-gray-100 dark:bg-gray-800">
           <Link to="/">
-            <h1 className="text-xl md:text-2xl font-bold p-3 mt-3 ml-5">
+            <h1 className="text-xl md:text-2xl font-bold p-3 mt-3 ml-5 text-gray-900 dark:text-white">
               Matrimony
             </h1>
           </Link>
@@ -34,7 +34,7 @@ const DashboardLayout = () => {
                 <li>
                   <Link
                     to="/dashboard/adminDashboard"
-                    className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block"
+                    className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block dark:text-gray-200"
                   >
                     Admin Dashboard
                   </Link>
@@ -42,7 +42,7 @@ const DashboardLayout = () => {
                 <li>
                   <Link
                     to="/dashboard/manageUser"
-                    className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block"
+                    className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block dark:text-gray-200"
                   >
                     Manage Users
                   </Link>
@@ -50,7 +50,7 @@ const DashboardLayout = () => {
                 <li>
                   <Link
                     to="/dashboard/approvedPremium"
-                    className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block"
+                    className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block dark:text-gray-200"
                   >
                     Approved Premium
                   </Link>
@@ -58,7 +58,7 @@ const DashboardLayout = () => {
                 <li>
                   <Link
                     to="/dashboard/approveContact"
-                    className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block"
+                    className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block dark:text-gray-200"
                   >
                     Approved Contact
                   </Link>
@@ -69,8 +69,16 @@ const DashboardLayout = () => {
               <>
                 <li>
                   <Link
+                    to="/dashboard/userProfile"
+                    className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block dark:text-gray-200"
+                  >
+                    User Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     to="/dashboard/editBioData"
-                    className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block"
+                    className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block dark:text-gray-200"
                   >
                     EditBioData
                   </Link>
@@ -78,7 +86,7 @@ const DashboardLayout = () => {
                 <li>
                   <Link
                     to="/dashboard/viewBio"
-                    className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block"
+                    className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block dark:text-gray-200"
                   >
                     View-Bio
                   </Link>
@@ -86,7 +94,7 @@ const DashboardLayout = () => {
                 <li>
                   <Link
                     to="/dashboard/myContact"
-                    className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block"
+                    className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block dark:text-gray-200"
                   >
                     My Contact
                   </Link>
@@ -94,18 +102,18 @@ const DashboardLayout = () => {
                 <li>
                   <Link
                     to="/dashboard/favorites"
-                    className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block"
+                    className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block dark:text-gray-200"
                   >
                     Favorites BioData
                   </Link>
                 </li>
               </>
             )}
-            <div className="border border-dotted mt-2"></div>
+            <div className="border border-dotted mt-2 dark:border-gray-600"></div>
             {/* shared link */}
             <li>
               <Link to="/">
-                <button className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block">
+                <button className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block dark:text-gray-200">
                   Home
                 </button>
               </Link>
@@ -113,7 +121,7 @@ const DashboardLayout = () => {
             <li>
               <button
                 onClick={handleLogOut}
-                className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block"
+                className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block dark:text-gray-200"
               >
                 Logout
               </button>
@@ -121,9 +129,9 @@ const DashboardLayout = () => {
             {/* shared link */}
           </ul>
         </div>
-        <div className="flex-1 p-4 min-h-screen">
-          <Dashboard></Dashboard>
-          <Outlet></Outlet>
+        <div className="flex-1 p-4 min-h-screen bg-gray-100 dark:bg-gray-900">
+          <Dashboard />
+          <Outlet />
         </div>
       </div>
     </>
