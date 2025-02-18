@@ -7,16 +7,12 @@ const EditBio = () => {
   const {user} = useContext(AuthContext);
   const axiosSecure = UseAxiosSecure();
 
-  // Handle form submission
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle form submission
     const form = event.target;
     const formData = new FormData(form);
     const bioFormData = Object.fromEntries(formData.entries());
 
-    // customerDetails
     const customerDetails = {
       bioFormData,
       email: user.email,
@@ -24,12 +20,9 @@ const EditBio = () => {
       photoURL: user.photoURL,
     };
 
-    // ! save bio data in database
     try {
-      // post req
       await axiosSecure.post("/bioData", customerDetails);
       toast.success("Bio data updated successfully");
-      // post req
     } catch (err) {
       console.log(err);
     }
@@ -37,22 +30,24 @@ const EditBio = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto bg-gray-50 shadow-md rounded-lg p-6 mt-10">
-      <h2 className="text-2xl font-bold mb-6">Edit Biodata</h2>
+    <div className="max-w-4xl mx-auto bg-gray-50 dark:bg-gray-800 shadow-md rounded-lg p-6 mt-10">
+      <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
+        Edit Biodata
+      </h2>
 
       <form onSubmit={handleSubmit}>
         {/* Biodata Type */}
         <div className="mb-4">
           <label
             htmlFor="biodataType"
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
           >
             Biodata Type
           </label>
           <select
             id="biodataType"
             name="biodataType"
-            className="w-full border-gray-300 rounded-md p-2"
+            className="w-full border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-md p-2"
           >
             <option value="">Select Type</option>
             <option value="male">Male</option>
@@ -64,7 +59,7 @@ const EditBio = () => {
         <div className="mb-4">
           <label
             htmlFor="name"
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
           >
             Name
           </label>
@@ -72,7 +67,7 @@ const EditBio = () => {
             type="text"
             id="name"
             name="name"
-            className="w-full border-gray-300 rounded-md p-2"
+            className="w-full border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-md p-2"
           />
         </div>
 
@@ -80,7 +75,7 @@ const EditBio = () => {
         <div className="mb-4">
           <label
             htmlFor="profileImage"
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
           >
             Profile Image
           </label>
@@ -88,20 +83,23 @@ const EditBio = () => {
             type="url"
             id="profileImage"
             name="img"
-            className="w-full border-gray-300 rounded-md p-2"
+            className="w-full border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-md p-2"
           />
         </div>
 
         {/* Date of Birth */}
         <div className="mb-4">
-          <label htmlFor="dob" className="block text-gray-700 font-medium mb-2">
+          <label
+            htmlFor="dob"
+            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
+          >
             Date of Birth
           </label>
           <input
             type="date"
             id="dob"
             name="dob"
-            className="w-full border-gray-300 rounded-md p-2"
+            className="w-full border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-md p-2"
           />
         </div>
 
@@ -109,14 +107,14 @@ const EditBio = () => {
         <div className="mb-4">
           <label
             htmlFor="height"
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
           >
             Height
           </label>
           <select
             id="height"
             name="height"
-            className="w-full border-gray-300 rounded-md p-2"
+            className="w-full border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-md p-2"
           >
             <option value="">Select Height</option>
             <option value="5ft">5 ft</option>
@@ -128,14 +126,14 @@ const EditBio = () => {
         <div className="mb-4">
           <label
             htmlFor="weight"
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
           >
             Weight
           </label>
           <select
             id="weight"
             name="weight"
-            className="w-full border-gray-300 rounded-md p-2"
+            className="w-full border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-md p-2"
           >
             <option value="">Select Weight</option>
             <option value="50kg">50 kg</option>
@@ -145,14 +143,17 @@ const EditBio = () => {
 
         {/* Age */}
         <div className="mb-4">
-          <label htmlFor="age" className="block text-gray-700 font-medium mb-2">
+          <label
+            htmlFor="age"
+            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
+          >
             Age
           </label>
           <input
             type="number"
             id="age"
             name="age"
-            className="w-full border-gray-300 rounded-md p-2"
+            className="w-full border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-md p-2"
           />
         </div>
 
@@ -160,14 +161,14 @@ const EditBio = () => {
         <div className="mb-4">
           <label
             htmlFor="occupation"
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
           >
             Occupation
           </label>
           <select
             id="occupation"
             name="occupation"
-            className="w-full border-gray-300 rounded-md p-2"
+            className="w-full border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-md p-2"
           >
             <option value="">Select Occupation</option>
             <option value="engineer">Engineer</option>
@@ -179,14 +180,14 @@ const EditBio = () => {
         <div className="mb-4">
           <label
             htmlFor="race"
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
           >
             Race (Skin Color)
           </label>
           <select
             id="race"
             name="race"
-            className="w-full border-gray-300 rounded-md p-2"
+            className="w-full border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-md p-2"
           >
             <option value="">Select Race</option>
             <option value="fair">Fair</option>
@@ -198,7 +199,7 @@ const EditBio = () => {
         <div className="mb-4">
           <label
             htmlFor="fathersName"
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
           >
             Father Name
           </label>
@@ -206,7 +207,7 @@ const EditBio = () => {
             type="text"
             id="fathersName"
             name="fathersName"
-            className="w-full border-gray-300 rounded-md p-2"
+            className="w-full border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-md p-2"
           />
         </div>
 
@@ -214,7 +215,7 @@ const EditBio = () => {
         <div className="mb-4">
           <label
             htmlFor="mothersName"
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
           >
             Mother Name
           </label>
@@ -222,7 +223,7 @@ const EditBio = () => {
             type="text"
             id="mothersName"
             name="mothersName"
-            className="w-full border-gray-300 rounded-md p-2"
+            className="w-full border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-md p-2"
           />
         </div>
 
@@ -230,14 +231,14 @@ const EditBio = () => {
         <div className="mb-4">
           <label
             htmlFor="permanentDivision"
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
           >
             Permanent Division
           </label>
           <select
             id="permanentDivision"
             name="permanentDivision"
-            className="w-full border-gray-300 rounded-md p-2"
+            className="w-full border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-md p-2"
           >
             <option value="">Select Division</option>
             <option value="dhaka">Dhaka</option>
@@ -254,14 +255,14 @@ const EditBio = () => {
         <div className="mb-4">
           <label
             htmlFor="presentDivision"
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
           >
             Present Division
           </label>
           <select
             id="presentDivision"
             name="presentDivision"
-            className="w-full border-gray-300 rounded-md p-2"
+            className="w-full border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-md p-2"
           >
             <option value="">Select Division</option>
             <option value="dhaka">Dhaka</option>
@@ -278,7 +279,7 @@ const EditBio = () => {
         <div className="mb-4">
           <label
             htmlFor="expectedPartnerAge"
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
           >
             Expected Partner Age
           </label>
@@ -286,7 +287,7 @@ const EditBio = () => {
             type="number"
             id="expectedPartnerAge"
             name="expectedPartnerAge"
-            className="w-full border-gray-300 rounded-md p-2"
+            className="w-full border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-md p-2"
           />
         </div>
 
@@ -294,14 +295,14 @@ const EditBio = () => {
         <div className="mb-4">
           <label
             htmlFor="expectedPartnerHeight"
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
           >
             Expected Partner Height
           </label>
           <select
             id="expectedPartnerHeight"
             name="expectedPartnerHeight"
-            className="w-full border-gray-300 rounded-md p-2"
+            className="w-full border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-md p-2"
           >
             <option value="">Select Height</option>
             <option value="5ft">5 ft</option>
@@ -313,14 +314,14 @@ const EditBio = () => {
         <div className="mb-4">
           <label
             htmlFor="expectedPartnerWeight"
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
           >
             Expected Partner Weight
           </label>
           <select
             id="expectedPartnerWeight"
             name="expectedPartnerWeight"
-            className="w-full border-gray-300 rounded-md p-2"
+            className="w-full border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-md p-2"
           >
             <option value="">Select Weight</option>
             <option value="50kg">50 kg</option>
@@ -332,7 +333,7 @@ const EditBio = () => {
         <div className="mb-4">
           <label
             htmlFor="contactEmail"
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
           >
             Contact Email
           </label>
@@ -341,7 +342,7 @@ const EditBio = () => {
             id="contactEmail"
             name="email"
             defaultValue={user?.email}
-            className="w-full border-gray-300 rounded-md p-2"
+            className="w-full border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-md p-2"
             readOnly
           />
         </div>
@@ -350,7 +351,7 @@ const EditBio = () => {
         <div className="mb-4">
           <label
             htmlFor="contactNumber"
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
           >
             Contact Number
           </label>
@@ -358,7 +359,7 @@ const EditBio = () => {
             type="tel"
             id="contactNumber"
             name="contactNumber"
-            className="w-full border-gray-300 rounded-md p-2"
+            className="w-full border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-md p-2"
             required
           />
         </div>
@@ -367,7 +368,7 @@ const EditBio = () => {
         <div className="mb-4">
           <button
             type="submit"
-            className="w-full bg-green-500 text-white p-2 rounded-md hover:bg-green-600"
+            className="w-full bg-green-500 text-white p-2 rounded-md hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700"
           >
             Save And Publish
           </button>
