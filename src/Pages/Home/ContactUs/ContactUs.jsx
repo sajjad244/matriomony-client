@@ -1,11 +1,13 @@
 const ContactUs = () => {
   return (
-    <div id="contact" className="bg-white py-10 shadow-lg">
+    <div id="contact" className="bg-white dark:bg-gray-900 py-10 shadow-lg">
       <div className="max-w-4xl mx-auto px-4">
         {/* Section Heading */}
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-extrabold text-gray-800">Contact Us</h2>
-          <p className="text-gray-600 mt-2">
+          <h2 className="text-3xl font-extrabold text-gray-800 dark:text-gray-100">
+            Contact Us
+          </h2>
+          <p className="text-gray-600 dark:text-gray-300 mt-2">
             We would love to hear from you! Fill out the form below to get in
             touch.
           </p>
@@ -15,7 +17,7 @@ const ContactUs = () => {
           {/* Name Field */}
           <div>
             <label
-              className="block text-gray-700 font-medium mb-2"
+              className="block text-gray-700 dark:text-gray-200 font-medium mb-2"
               htmlFor="name"
             >
               Name
@@ -23,7 +25,7 @@ const ContactUs = () => {
             <input
               type="text"
               id="name"
-              className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-200 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 px-4 py-2"
               placeholder="Your Name"
             />
           </div>
@@ -31,7 +33,7 @@ const ContactUs = () => {
           {/* Email Field */}
           <div>
             <label
-              className="block text-gray-700 font-medium mb-2"
+              className="block text-gray-700 dark:text-gray-200 font-medium mb-2"
               htmlFor="email"
             >
               Email
@@ -39,7 +41,7 @@ const ContactUs = () => {
             <input
               type="email"
               id="email"
-              className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-200 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 px-4 py-2"
               placeholder="Your Email"
             />
           </div>
@@ -47,7 +49,7 @@ const ContactUs = () => {
           {/* Message Field */}
           <div>
             <label
-              className="block text-gray-700 font-medium mb-2"
+              className="block text-gray-700 dark:text-gray-200 font-medium mb-2"
               htmlFor="message"
             >
               Message
@@ -55,7 +57,7 @@ const ContactUs = () => {
             <textarea
               id="message"
               rows="4"
-              className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-200 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 px-4 py-2"
               placeholder="Your Message"
             ></textarea>
           </div>
@@ -64,7 +66,7 @@ const ContactUs = () => {
           <div className="text-center">
             <button
               type="submit"
-              className="bg-blue-500 text-white py-2 px-6 rounded-lg font-medium hover:bg-blue-600"
+              className="bg-blue-500 dark:bg-blue-600 text-white py-2 px-6 rounded-lg font-medium hover:bg-blue-600 dark:hover:bg-blue-700 transition-all"
             >
               Send Message
             </button>
