@@ -5,7 +5,7 @@ const Dashboard = () => {
   const [isAdmin] = useAdmin();
 
   if (isAdmin) {
-    return <Navigate to="/dashboard/adminDashboard" replace={true} />;
+    return <Navigate to="/dashboard/userProfile" replace={true} />;
   } else {
     return <Navigate to="/dashboard/userProfile" replace={true} />;
   }

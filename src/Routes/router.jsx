@@ -64,7 +64,6 @@ const router = createBrowserRouter([
       </PrivetRoutes>
     ),
     children: [
-      //! users rotes
       {
         path: "userProfile",
         element: (
@@ -73,6 +72,7 @@ const router = createBrowserRouter([
           </PrivetRoutes>
         ),
       },
+      //! users rotes
       {
         path: "editBioData",
         element: (

@@ -69,14 +69,6 @@ const DashboardLayout = () => {
               <>
                 <li>
                   <Link
-                    to="/dashboard/userProfile"
-                    className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block dark:text-gray-200"
-                  >
-                    User Profile
-                  </Link>
-                </li>
-                <li>
-                  <Link
                     to="/dashboard/editBioData"
                     className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block dark:text-gray-200"
                   >
@@ -111,6 +103,14 @@ const DashboardLayout = () => {
             )}
             <div className="border border-dotted mt-2 dark:border-gray-600"></div>
             {/* shared link */}
+            <li>
+              <Link
+                to="/dashboard/userProfile"
+                className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block dark:text-gray-200"
+              >
+                User Profile
+              </Link>
+            </li>
             <li>
               <Link to="/">
                 <button className="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md font-semibold block dark:text-gray-200">
