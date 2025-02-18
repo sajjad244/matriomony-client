@@ -14,8 +14,8 @@ const PremiumMember = () => {
   });
 
   return (
-    <div className="container mx-auto px-4">
-      <h2 className="text-3xl font-extrabold text-gray-800 text-center mt-10 mb-5">
+    <div className="container mx-auto px-4 py-10 dark:bg-gray-900">
+      <h2 className="text-3xl font-extrabold text-gray-800 dark:text-gray-100 text-center mt-10 mb-5">
         Premium Members
       </h2>
 
@@ -24,7 +24,7 @@ const PremiumMember = () => {
         <select
           onChange={(e) => setSortOrder(e.target.value)}
           value={sortOrder}
-          className="p-2 border rounded bg-white text-gray-700 shadow"
+          className="p-2 border rounded bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 shadow dark:border-gray-600"
         >
           <option value="asc">Sort by Age: Ascending</option>
           <option value="desc">Sort by Age: Descending</option>
@@ -33,59 +33,55 @@ const PremiumMember = () => {
 
       {/* Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {sortedMembers.slice(0, 6).map(
-          (
-            member // Top 6 members
-          ) => (
-            <div
-              key={member.biodataId || member._id}
-              className="bg-white shadow-lg rounded-lg overflow-hidden"
-            >
-              {/* Member Image */}
-              <div className="flex justify-center bg-gradient-to-r from-blue-400 to-purple-500 p-4">
-                <img
-                  src={member.bioFormData?.img}
-                  alt={member.bioFormData?.name}
-                  className="w-24 h-24 rounded-full border-4 border-white object-cover"
-                />
-              </div>
-
-              {/* Member Info */}
-              <div className="p-4 text-center">
-                <h3 className="text-xl font-semibold text-gray-800">
-                  {member.bioFormData?.name || "N/A"}
-                </h3>
-                <p className="text-gray-600">
-                  {member.bioFormData?.occupation || "No Occupation"}
-                </p>
-                <p className="text-gray-600">
-                  Age: {member.bioFormData?.age || "N/A"} years
-                </p>
-              </div>
-
-              {/* Address Info */}
-              <div className="px-4 pb-4">
-                <p className="text-gray-500">
-                  <strong>Permanent:</strong>{" "}
-                  {member.bioFormData?.permanentDivision || "N/A"}
-                </p>
-                <p className="text-gray-500">
-                  <strong>Present:</strong>{" "}
-                  {member.bioFormData?.presentDivision || "N/A"}
-                </p>
-              </div>
-
-              {/* View Details Button */}
-              <div className="bg-gray-50 p-4">
-                <Link to={`viewDetails/${member._id}`}>
-                  <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
-                    View Details
-                  </button>
-                </Link>
-              </div>
+        {sortedMembers.slice(0, 6).map((member) => (
+          <div
+            key={member.biodataId || member._id}
+            className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden"
+          >
+            {/* Member Image */}
+            <div className="flex justify-center bg-gradient-to-r from-blue-400 to-purple-500 p-4">
+              <img
+                src={member.bioFormData?.img}
+                alt={member.bioFormData?.name}
+                className="w-24 h-24 rounded-full border-4 border-white object-cover"
+              />
             </div>
-          )
-        )}
+
+            {/* Member Info */}
+            <div className="p-4 text-center">
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
+                {member.bioFormData?.name || "N/A"}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                {member.bioFormData?.occupation || "No Occupation"}
+              </p>
+              <p className="text-gray-600 dark:text-gray-400">
+                Age: {member.bioFormData?.age || "N/A"} years
+              </p>
+            </div>
+
+            {/* Address Info */}
+            <div className="px-4 pb-4">
+              <p className="text-gray-500 dark:text-gray-300">
+                <strong>Permanent:</strong>{" "}
+                {member.bioFormData?.permanentDivision || "N/A"}
+              </p>
+              <p className="text-gray-500 dark:text-gray-300">
+                <strong>Present:</strong>{" "}
+                {member.bioFormData?.presentDivision || "N/A"}
+              </p>
+            </div>
+
+            {/* View Details Button */}
+            <div className="bg-gray-50 dark:bg-gray-700 p-4">
+              <Link to={`viewDetails/${member._id}`}>
+                <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded transition-all">
+                  View Details
+                </button>
+              </Link>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
