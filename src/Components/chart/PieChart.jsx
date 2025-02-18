@@ -27,7 +27,7 @@ const PieChart = ({data}) => {
   };
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-lg ">
+    <div className="p-6 bg-gray-800 text-white rounded-lg shadow-lg">
       <h3 className="text-xl font-semibold text-center mb-4">
         Biodata Distribution
       </h3>

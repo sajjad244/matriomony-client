@@ -55,7 +55,7 @@ const ViewCard = ({bio}) => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+    <div className="max-w-md mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
       {/* Profile Section */}
       <div className="flex items-center bg-gradient-to-r from-purple-500 to-indigo-500 p-4">
         <img
@@ -70,7 +70,7 @@ const ViewCard = ({bio}) => {
       </div>
 
       {/* Biodata Information */}
-      <div className="p-4">
+      <div className="p-4 text-gray-900 dark:text-white">
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div>
             <p className="font-semibold">Date of Birth:</p>
@@ -136,10 +136,10 @@ const ViewCard = ({bio}) => {
       </div>
 
       {/* Premium Button */}
-      <div className="p-4 bg-gray-50">
+      <div className="p-4 bg-gray-50 dark:bg-gray-700">
         <button
           onClick={requestHandler}
-          className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded"
+          className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded dark:bg-yellow-600 dark:hover:bg-yellow-700"
         >
           Make BioData Premium
         </button>

@@ -50,9 +50,9 @@ const Favorites = () => {
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">My Favourites Biodata</h1>
       <div className="overflow-x-auto">
-        <table className="min-w-full border border-gray-300">
+        <table className="min-w-full border border-gray-300 ">
           <thead>
-            <tr className="bg-gray-200">
+            <tr className="bg-gray-200 dark:bg-gray-800">
               <th className="border px-4 py-2">Name</th>
               <th className="border px-4 py-2">BioData Id</th>
               <th className="border px-4 py-2">Permanent Address</th>
