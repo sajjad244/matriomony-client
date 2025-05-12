@@ -3,6 +3,8 @@ import UseAxiosSecure from "../../../Hooks/UseAxiosSecure";
 import UseAllData from "../../../Hooks/AllData/UseAllData";
 import usePayment from "../../../Hooks/AllData/usePayment";
 import PieChart from "../../../Components/chart/PieChart";
+import BarChartGender from "../../BarChartGender/BarChartGender";
+import PaymentLineChart from "../../PaymentLineChart/PaymentLineChart";
 
 const AdminDashboard = () => {
   const axiosSecure = UseAxiosSecure();
@@ -80,6 +82,7 @@ const AdminDashboard = () => {
         <h3 className="text-xl font-semibold mb-4 text-center text-black dark:text-white">
           Biodata Distribution
         </h3>
+        {/* Pie Chart Section */}
         <PieChart
           data={{
             totalBiodata,
@@ -88,6 +91,22 @@ const AdminDashboard = () => {
             totalPremium,
           }}
         />
+
+        {/* Bar Chart Section */}
+        <div className="my-8">
+          <h3 className="text-xl font-semibold text-center mb-4 text-black dark:text-white">
+            Gender Count Chart
+          </h3>
+          <BarChartGender males={totalMales} females={totalFemales} />
+        </div>
+
+        {/* Line Chart Section */}
+        <div className="my-8">
+          <h3 className="text-xl font-semibold text-center mb-4 text-black dark:text-white">
+            Monthly Payment Trend (Demo)
+          </h3>
+          <PaymentLineChart />
+        </div>
       </div>
     </div>
   );
