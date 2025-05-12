@@ -4,6 +4,7 @@ import HowItWork from "../HowItWork/HowItWork";
 import PremiumMember from "../premiumMember/PremiumMember";
 import SuccessCounter from "../SuccessCounter/SuccessCounter";
 import SuccessStory from "../SuccessStory/SuccessStory";
+import WhyChooseUs from "../WhyChooseUs/WhyChooseUs";
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
       <SuccessCounter></SuccessCounter>
       {/* success story */}
       <SuccessStory></SuccessStory>
+      <WhyChooseUs></WhyChooseUs>
       {/* contact us */}
       <ContactUs></ContactUs>
       {/* footer */}
