@@ -366,10 +366,7 @@ const EditBio = () => {
 
         {/* Add Button */}
         <div className="mb-4">
-          <button
-            type="submit"
-            className="w-full bg-green-500 text-white p-2 rounded-md hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700"
-          >
+          <button type="submit" className="w-full btn-outline">
             Save And Publish
           </button>
         </div>

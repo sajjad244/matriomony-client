@@ -249,9 +249,7 @@ const ViewDetails = () => {
                   <strong>Occupation:</strong> {data.bioFormData.occupation}
                 </p>
                 <Link to={`/viewDetails/${data._id}`}>
-                  <button className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md">
-                    View Profile
-                  </button>
+                  <button className="mt-2 btn-outline">View Profile</button>
                 </Link>
               </div>
             ))}

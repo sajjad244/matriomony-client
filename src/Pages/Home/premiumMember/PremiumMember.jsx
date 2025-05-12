@@ -73,11 +73,9 @@ const PremiumMember = () => {
             </div>
 
             {/* View Details Button */}
-            <div className="bg-gray-50 dark:bg-gray-700 p-4">
+            <div className="bg-gray-50 dark:bg-gray-800 p-4">
               <Link to={`viewDetails/${member._id}`}>
-                <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded transition-all">
-                  View Details
-                </button>
+                <button className="w-full btn-outline">View Details</button>
               </Link>
             </div>
           </div>

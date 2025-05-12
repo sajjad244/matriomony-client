@@ -176,9 +176,7 @@ const BioPage = () => {
                 {biodata.bioFormData.occupation}
               </p>
               <Link to={`/viewDetails/${biodata._id}`}>
-                <button className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none">
-                  View Profile
-                </button>
+                <button className="mt-2 btn-outline">View Profile</button>
               </Link>
             </div>
           ))}
