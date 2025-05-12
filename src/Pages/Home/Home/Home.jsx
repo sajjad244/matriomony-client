@@ -1,5 +1,6 @@
 import Banner from "../Banner/Banner";
 import ContactUs from "../ContactUs/ContactUs";
+import FAQSection from "../FAQSection/FAQSection";
 import HowItWork from "../HowItWork/HowItWork";
 import PremiumMember from "../premiumMember/PremiumMember";
 import SuccessCounter from "../SuccessCounter/SuccessCounter";
@@ -20,6 +21,7 @@ const Home = () => {
       {/* success story */}
       <SuccessStory></SuccessStory>
       <WhyChooseUs></WhyChooseUs>
+      <FAQSection></FAQSection>
       {/* contact us */}
       <ContactUs></ContactUs>
       {/* footer */}
