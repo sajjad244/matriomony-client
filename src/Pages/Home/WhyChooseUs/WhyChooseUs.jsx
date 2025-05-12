@@ -28,10 +28,10 @@ const WhyChooseUs = () => {
             <div className="w-12 h-12 rounded-full bg-pink-100 mx-auto mb-4 flex items-center justify-center text-pink-600 text-xl font-bold">
               {idx + 1}
             </div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-800">
+            <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
               {item.title}
             </h3>
-            <p className="text-gray-600 text-sm">{item.desc}</p>
+            <p className="text-gray-600 mt-1 dark:text-gray-400">{item.desc}</p>
           </div>
         ))}
       </div>
