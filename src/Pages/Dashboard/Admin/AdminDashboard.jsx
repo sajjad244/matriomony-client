@@ -77,8 +77,22 @@ const AdminDashboard = () => {
         </div>
       </div>
 
+      {/* Bar Chart Section */}
+      <div className="my-8">
+        <h3 className="text-xl font-semibold text-center mb-4 text-black dark:text-white">
+          Gender Count Chart
+        </h3>
+        <BarChartGender males={totalMales} females={totalFemales} />
+      </div>
+      {/* Line Chart Section */}
+      <div className="my-8">
+        <h3 className="text-xl font-semibold text-center mb-4 text-black dark:text-white">
+          Monthly Payment Trend
+        </h3>
+        <PaymentLineChart />
+      </div>
       {/* Display Pie Chart */}
-      <div className="my-8 p-6 rounded-lg w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 mx-auto">
+      <div className="my-8 p-6 rounded-lg w-full sm:w-3/4 md:w-2/3 lg:w-2/3 mx-auto">
         <h3 className="text-xl font-semibold mb-4 text-center text-black dark:text-white">
           Biodata Distribution
         </h3>
@@ -91,22 +105,6 @@ const AdminDashboard = () => {
             totalPremium,
           }}
         />
-
-        {/* Bar Chart Section */}
-        <div className="my-8">
-          <h3 className="text-xl font-semibold text-center mb-4 text-black dark:text-white">
-            Gender Count Chart
-          </h3>
-          <BarChartGender males={totalMales} females={totalFemales} />
-        </div>
-
-        {/* Line Chart Section */}
-        <div className="my-8">
-          <h3 className="text-xl font-semibold text-center mb-4 text-black dark:text-white">
-            Monthly Payment Trend (Demo)
-          </h3>
-          <PaymentLineChart />
-        </div>
       </div>
     </div>
   );
