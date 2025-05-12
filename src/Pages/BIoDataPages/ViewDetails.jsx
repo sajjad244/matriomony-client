@@ -190,9 +190,7 @@ const ViewDetails = () => {
                   onClick={handleFavorite}
                   disabled={!user}
                   className={`mt-5 ${
-                    !user
-                      ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-blue-500 hover:bg-green-500"
+                    !user ? "bg-gray-400 cursor-not-allowed" : "btn-outline"
                   } text-white px-4 py-2 rounded-md `}
                 >
                   Add to Favorites
@@ -201,9 +199,7 @@ const ViewDetails = () => {
                   <button
                     disabled={premium}
                     className={`mt-5 px-4 py-2 rounded-md text-white ${
-                      premium
-                        ? "bg-gray-400 cursor-not-allowed"
-                        : "bg-blue-500 hover:bg-green-500"
+                      premium ? "bg-gray-400 cursor-not-allowed" : "btn-outline"
                     }`}
                   >
                     Request Contact

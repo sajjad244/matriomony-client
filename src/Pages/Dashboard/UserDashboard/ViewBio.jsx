@@ -37,7 +37,7 @@ const ViewBio = () => {
         </>
       ) : (
         <>
-          <h1 className=" text-center text-cyan-400 font-bold text-4xl h-screen flex items-center justify-center">
+          <h1 className=" text-center text-2xl font-bold text-gray-800 dark:text-gray-100 h-screen flex items-center justify-center">
             No data Available
           </h1>
         </>

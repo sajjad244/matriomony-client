@@ -64,10 +64,7 @@ const ContactUs = () => {
 
           {/* Submit Button */}
           <div className="text-center">
-            <button
-              type="submit"
-              className="bg-blue-500 dark:bg-blue-600 text-white py-2 px-6 rounded-lg font-medium hover:bg-blue-600 dark:hover:bg-blue-700 transition-all"
-            >
+            <button type="submit" className="btn-outline ">
               Send Message
             </button>
           </div>

@@ -90,9 +90,7 @@ const HowItWork = () => {
                 ))}
               </ul>
               <div className="mt-6 text-center">
-                <button className="bg-blue-500 dark:bg-blue-600 text-white py-2 px-6 rounded-lg font-medium hover:bg-blue-600 dark:hover:bg-blue-700 transition-all">
-                  Upgrade Now
-                </button>
+                <button className="btn-outline">Upgrade Now</button>
               </div>
             </div>
           </div>
