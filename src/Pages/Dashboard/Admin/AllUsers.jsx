@@ -22,7 +22,6 @@ const AllUsers = () => {
   //! for making Admin Patch req to backend
   const handleMakeAdmin = async (user) => {
     await axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
-      console.log(res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
@@ -34,12 +33,9 @@ const AllUsers = () => {
     });
   };
 
-  //! for making Admin Patch req to backend
-
   //? for making premium Patch req to backend
   const handleMakePremium = async (user) => {
     await axiosSecure.patch(`/users/premium/${user._id}`).then((res) => {
-      console.log(res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
@@ -51,22 +47,22 @@ const AllUsers = () => {
     });
   };
 
-  //? for making Admin Patch req to backend
-
   if (isLoading) {
     return <LoadingSpinner />;
   }
 
   return (
-    <div className="container mx-auto p-6  rounded-md h-screen">
+    <div className="container mx-auto p-6">
       <h1 className="text-2xl font-bold mb-4 text-center text-gray-900 dark:text-white">
         Manage Users
       </h1>
       <h2 className="text-lg text-gray-600 dark:text-gray-400 mb-6">
         Total Users: {users.length}
       </h2>
+
+      {/* ✅ Responsive wrapper */}
       <div className="overflow-x-auto">
-        <table className="table-auto w-full border-collapse border border-gray-200 dark:border-gray-700">
+        <table className="min-w-full border-collapse border border-gray-200 dark:border-gray-700">
           <thead>
             <tr className="bg-gray-100 dark:bg-gray-700 text-left">
               <th className="border border-gray-200 dark:border-gray-700 px-4 py-2 text-gray-900 dark:text-white">
@@ -97,7 +93,7 @@ const AllUsers = () => {
                     onClick={() => handleMakeAdmin(user)}
                     className={`${
                       user?.role === "admin"
-                        ? "bg-red-500 text-white px-3 py-1 rounded-md mr-2 hover"
+                        ? "bg-red-500 text-white px-3 py-1 rounded-md mr-2 cursor-not-allowed"
                         : "bg-blue-500 text-white px-3 py-1 rounded-md mr-2 hover:bg-green-600"
                     }`}
                     disabled={user?.role === "admin"}
@@ -108,7 +104,7 @@ const AllUsers = () => {
                     onClick={() => handleMakePremium(user)}
                     className={`${
                       user?.role === "premium"
-                        ? "bg-yellow-500 text-white px-3 py-1 rounded-md mr-2 hover"
+                        ? "bg-yellow-500 text-white px-3 py-1 rounded-md mr-2 cursor-not-allowed"
                         : "bg-blue-500 text-white px-3 py-1 rounded-md mr-2 hover:bg-green-600"
                     }`}
                     disabled={user?.role === "premium"}

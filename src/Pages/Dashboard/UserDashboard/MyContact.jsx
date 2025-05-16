@@ -42,49 +42,57 @@ const MyContactRequest = () => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">My Contact Requests</h1>
-      <table className="w-full table-auto border-collapse border border-gray-300">
-        <thead>
-          <tr>
-            <th className="border px-4 py-2">Name</th>
-            <th className="border px-4 py-2">Biodata ID</th>
-            <th className="border px-4 py-2">Status</th>
-            <th className="border px-4 py-2">Mobile No</th>
-            <th className="border px-4 py-2">Email</th>
-            <th className="border px-4 py-2">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {contactRequests.map((request) => (
-            <tr key={request._id}>
-              <td className="border px-4 py-2">{request.payingInfo.name}</td>
-              <td className="border px-4 py-2">
-                {request.payingInfo.bioDataId}
-              </td>
-              <td className="border px-4 py-2">
-                {request.status === "Approved" ? (
-                  <span className="text-green-600 font-bold">Approved</span>
-                ) : (
-                  <span className="text-yellow-600 font-bold">Pending</span>
-                )}
-              </td>
-              <td className="border px-4 py-2">
-                {request.status === "Approved" ? request.payingInfo.phone : "-"}
-              </td>
-              <td className="border px-4 py-2">
-                {request.status === "Approved" ? request.payingInfo.email : "-"}
-              </td>
-              <td className="border px-4 py-2">
-                <button
-                  className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
-                  onClick={() => deleteMutation.mutate(request._id)}
-                >
-                  Delete
-                </button>
-              </td>
+
+      {/* ✅ Responsive wrapper added */}
+      <div className="overflow-x-auto">
+        <table className="min-w-full table-auto border-collapse border border-gray-300">
+          <thead>
+            <tr className="bg-gray-200 dark:bg-gray-800">
+              <th className="border px-4 py-2">Name</th>
+              <th className="border px-4 py-2">Biodata ID</th>
+              <th className="border px-4 py-2">Status</th>
+              <th className="border px-4 py-2">Mobile No</th>
+              <th className="border px-4 py-2">Email</th>
+              <th className="border px-4 py-2">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {contactRequests.map((request) => (
+              <tr key={request._id} className="hover:bg-gray-50">
+                <td className="border px-4 py-2">{request.payingInfo.name}</td>
+                <td className="border px-4 py-2">
+                  {request.payingInfo.bioDataId}
+                </td>
+                <td className="border px-4 py-2">
+                  {request.status === "Approved" ? (
+                    <span className="text-green-600 font-bold">Approved</span>
+                  ) : (
+                    <span className="text-yellow-600 font-bold">Pending</span>
+                  )}
+                </td>
+                <td className="border px-4 py-2">
+                  {request.status === "Approved"
+                    ? request.payingInfo.phone
+                    : "-"}
+                </td>
+                <td className="border px-4 py-2">
+                  {request.status === "Approved"
+                    ? request.payingInfo.email
+                    : "-"}
+                </td>
+                <td className="border px-4 py-2">
+                  <button
+                    className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                    onClick={() => deleteMutation.mutate(request._id)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
