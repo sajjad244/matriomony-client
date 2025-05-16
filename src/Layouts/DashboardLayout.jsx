@@ -63,6 +63,14 @@ const DashboardLayout = () => {
                     Approved Contact
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    to="/dashboard/payedUsers"
+                    className="hover:bg-black hover:text-white px-3 py-2 rounded-md font-semibold block dark:text-gray-200"
+                  >
+                    Payed Users
+                  </Link>
+                </li>
               </>
             ) : (
               //! User Dashboard

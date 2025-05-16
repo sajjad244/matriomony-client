@@ -19,6 +19,7 @@ import AdminRoutes from "./AdminRoutes";
 import AdminDashboard from "../Pages/Dashboard/Admin/AdminDashboard";
 import ApprovedContact from "../Pages/Dashboard/Admin/ApprovedContact";
 import UserProfile from "../Pages/Dashboard/UserDashboard/UserProfile";
+import PayedUsers from "../Pages/Dashboard/Admin/PayedUsers";
 
 const router = createBrowserRouter([
   {
@@ -143,6 +144,16 @@ const router = createBrowserRouter([
           <PrivetRoutes>
             <AdminRoutes>
               <ApprovedContact></ApprovedContact>
+            </AdminRoutes>
+          </PrivetRoutes>
+        ),
+      },
+      {
+        path: "payedUsers",
+        element: (
+          <PrivetRoutes>
+            <AdminRoutes>
+              <PayedUsers></PayedUsers>
             </AdminRoutes>
           </PrivetRoutes>
         ),
