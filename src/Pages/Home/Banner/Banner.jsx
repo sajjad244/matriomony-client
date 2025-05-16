@@ -3,7 +3,7 @@ import banner from "../../../assets/banner.jpg";
 const Banner = () => {
   return (
     <div
-      className="relative h-[700px] top-8 flex items-center justify-center text-center bg-cover bg-center "
+      className="relative h-[700px] top-8 flex items-center justify-center text-center bg-cover bg-center"
       style={{
         backgroundImage: `url(${banner})`,
         opacity: 0.9,
@@ -17,6 +17,9 @@ const Banner = () => {
       <p className="absolute bottom-5 text-lg md:text-xl text-white z-10">
         Find Your Soulmate Here - Where Hearts Connect and Dreams Begin
       </p>
+      <div className="text-center absolute z-10 bottom-52 md:bottom-60 ">
+        <button className="btn-line ">Send Message</button>
+      </div>
     </div>
   );
 };
