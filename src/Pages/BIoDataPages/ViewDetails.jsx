@@ -7,12 +7,14 @@ import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 import toast from "react-hot-toast";
 import {useContext} from "react";
 import AuthContext from "../../Provider/AuthContext";
+import useAdmin from "../../Hooks/Admin/useAdmin";
 
 const ViewDetails = () => {
   const {id} = useParams();
   const axiosPublic = UseAxiosPublic();
   const [allData] = UseAllData(); // Fetch all bioData using TanStack Query and hook
   const [premium] = usePremium(); // Fetch premium bioData using TanStack Query and hook
+  const [admin] = useAdmin(); // Fetch admin bioData using TanStack Query and hook
   const {user} = useContext(AuthContext);
 
   //! Fetch bioData using TanStack Query
@@ -143,7 +145,7 @@ const ViewDetails = () => {
                   Email:
                 </strong>{" "}
                 <a className="text-blue-500 underline">
-                  {premium
+                  {premium || admin
                     ? singleData?.bioFormData?.email
                     : "Premium Member Only"}
                 </a>
@@ -153,7 +155,7 @@ const ViewDetails = () => {
                   Contact Number:
                 </strong>{" "}
                 <a className="text-blue-500 underline">
-                  {premium
+                  {premium || admin
                     ? singleData?.bioFormData?.contactNumber
                     : "Premium Member Only"}
                 </a>
@@ -188,18 +190,22 @@ const ViewDetails = () => {
               <div className="mt-5 flex gap-10">
                 <button
                   onClick={handleFavorite}
-                  disabled={!user}
+                  disabled={!user || admin}
                   className={`mt-5 ${
-                    !user ? "bg-gray-400 cursor-not-allowed" : "btn-outline"
+                    !user || admin
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "btn-outline"
                   } text-white px-4 py-2 rounded-md `}
                 >
                   Add to Favorites
                 </button>
                 <Link to={`/checkout/${singleData._id}`}>
                   <button
-                    disabled={premium}
+                    disabled={premium || admin}
                     className={`mt-5 px-4 py-2 rounded-md text-white ${
-                      premium ? "bg-gray-400 cursor-not-allowed" : "btn-outline"
+                      premium || admin
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : "btn-outline"
                     }`}
                   >
                     Request Contact
