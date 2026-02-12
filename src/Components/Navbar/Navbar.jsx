@@ -54,32 +54,7 @@ const Navbar = () => {
         About
       </a>
 
-      {user?.email ? (
-        <>
-          <button
-            onClick={handleLogOut}
-            className="px-3 py-2 rounded-md text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 font-semibold transition-all duration-300"
-          >
-            Logout
-          </button>
-          <Link
-            to="/dashboard"
-            className="px-3 py-2 rounded-md text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 font-semibold transition-all duration-300"
-          >
-            Dashboard
-          </Link>
-        </>
-      ) : (
-        <>
-          <Link
-            to="/dashboard/userProfile"
-            className="px-3 py-2 rounded-md text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 font-semibold transition-all duration-300"
-          >
-            Login
-          </Link>
-        </>
-      )}
-
+      {/*  */}
       {/* Dark Mode Toggle Button */}
       <button onClick={() => setDarkMode(!darkMode)}>
         {darkMode ? (
@@ -89,14 +64,46 @@ const Navbar = () => {
         )}
       </button>
 
-      {/* profile */}
+      <div className="border border-l-2 border-dotted  dark:border-gray-600"></div>
+      {/*  */}
 
-      <Link
-        to="/dashboard/userProfile"
-        className="px-3 py-2 rounded-md text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 font-semibold transition-all duration-300"
-      >
-        Profile
-      </Link>
+      {user?.email ? (
+        <>
+          <button
+            onClick={handleLogOut}
+            className="px-3 py-2 rounded-md text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 font-semibold transition-all duration-300"
+          >
+            Logout
+          </button>
+          {/* <Link
+            to="/dashboard"
+            className="px-3 py-2 rounded-md text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 font-semibold transition-all duration-300"
+          >
+            Dashboard
+          </Link> */}
+
+          {/* profile */}
+
+          <Link to="/dashboard/userProfile">
+            <img
+              src={user?.photoURL || "/default-profile.png"}
+              alt="profile"
+              className="w-8 h-8 mt-1 rounded-full cursor-pointer"
+            />
+          </Link>
+        </>
+      ) : (
+        <>
+          <Link
+            to="/login"
+            className="px-3 py-2 rounded-md text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 font-semibold transition-all duration-300"
+          >
+            Login
+          </Link>
+        </>
+      )}
+
+      {/*  */}
     </>
   );
 
