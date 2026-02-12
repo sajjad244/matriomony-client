@@ -3,11 +3,14 @@ import {useEffect, useState} from "react";
 import AuthContext from "./AuthContext";
 import {
   createUserWithEmailAndPassword,
+  EmailAuthProvider,
   GoogleAuthProvider,
   onAuthStateChanged,
+  reauthenticateWithCredential,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updatePassword,
   updateProfile,
 } from "firebase/auth";
 import auth from "../Firebase/firebase.config";
@@ -53,6 +56,37 @@ const AuthProvider = ({children}) => {
     return signInWithPopup(auth, googleProvider);
   };
 
+  // Change Password
+  const changeUserPassword = async (currentPassword, newPassword) => {
+    setLoading(true);
+
+    if (!user) throw new Error("User not logged in");
+
+    // Google login users can't change password
+    if (user.providerData[0].providerId !== "password") {
+      setLoading(false);
+      throw new Error("Google login user cannot change password");
+    }
+
+    try {
+      // reauthenticate
+      const credential = EmailAuthProvider.credential(
+        user.email,
+        currentPassword,
+      );
+      await reauthenticateWithCredential(user, credential);
+
+      //  update password
+      await updatePassword(user, newPassword);
+
+      setLoading(false);
+      return true; // success
+    } catch (error) {
+      setLoading(false);
+      throw error;
+    }
+  };
+
   // observer user
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -89,6 +123,7 @@ const AuthProvider = ({children}) => {
     logOut,
     updateUserProfile,
     googleLogIn,
+    changeUserPassword,
   };
 
   return (

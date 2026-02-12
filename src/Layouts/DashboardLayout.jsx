@@ -20,9 +20,9 @@ const DashboardLayout = () => {
     <>
       <Toaster />
       <Navbar></Navbar>
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col md:flex-row ">
         {/* Dashboard sidebar */}
-        <div className="w-full md:w-64 h-auto md:min-h-screen ">
+        <div className="w-full md:w-64 h-auto md:min-h-screen  ">
           {/* <Link to="/">
             <h1 className="text-xl md:text-2xl font-bold p-3 mt-3 ml-5 text-gray-900 dark:text-white">
               Matrimony
@@ -139,7 +139,7 @@ const DashboardLayout = () => {
             {/* shared link */}
           </ul>
         </div>
-        <div className="flex-1 p-4 min-h-screen ">
+        <div className="flex-1 p-4 min-h-screen">
           <Dashboard />
           <Outlet />
         </div>
