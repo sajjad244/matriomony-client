@@ -4,6 +4,7 @@ import AuthContext from "../Provider/AuthContext";
 import {useContext} from "react";
 import useAdmin from "../Hooks/Admin/useAdmin";
 import Dashboard from "../Pages/Dashboard/Dashboard";
+import Navbar from "../Components/Navbar/Navbar";
 
 const DashboardLayout = () => {
   const [isAdmin] = useAdmin();
@@ -18,14 +19,15 @@ const DashboardLayout = () => {
   return (
     <>
       <Toaster />
+      <Navbar></Navbar>
       <div className="flex flex-col md:flex-row">
         {/* Dashboard sidebar */}
-        <div className="w-full md:w-64 h-auto md:min-h-screen bg-gray-100 dark:bg-gray-800">
-          <Link to="/">
+        <div className="w-full md:w-64 h-auto md:min-h-screen ">
+          {/* <Link to="/">
             <h1 className="text-xl md:text-2xl font-bold p-3 mt-3 ml-5 text-gray-900 dark:text-white">
               Matrimony
             </h1>
-          </Link>
+          </Link> */}
 
           <ul className="mt-4 md:mt-10 ml-5 flex flex-col gap-1 md:gap-2 md:text-sm lg:text-lg">
             {isAdmin ? (
@@ -137,7 +139,7 @@ const DashboardLayout = () => {
             {/* shared link */}
           </ul>
         </div>
-        <div className="flex-1 p-4 min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div className="flex-1 p-4 min-h-screen ">
           <Dashboard />
           <Outlet />
         </div>

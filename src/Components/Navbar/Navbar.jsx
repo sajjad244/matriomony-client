@@ -8,7 +8,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const {user, logOut} = useContext(AuthContext);
   const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("theme") === "dark"
+    localStorage.getItem("theme") === "dark",
   );
 
   useEffect(() => {
@@ -72,7 +72,7 @@ const Navbar = () => {
       ) : (
         <>
           <Link
-            to="/login"
+            to="/dashboard/userProfile"
             className="px-3 py-2 rounded-md text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 font-semibold transition-all duration-300"
           >
             Login
@@ -88,6 +88,15 @@ const Navbar = () => {
           <HiMoon className="w-6 h-6 text-gray-600" />
         )}
       </button>
+
+      {/* profile */}
+
+      <Link
+        to="/dashboard/userProfile"
+        className="px-3 py-2 rounded-md text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 font-semibold transition-all duration-300"
+      >
+        Profile
+      </Link>
     </>
   );
 
