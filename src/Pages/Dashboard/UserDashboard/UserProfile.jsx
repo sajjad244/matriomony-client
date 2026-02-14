@@ -59,8 +59,13 @@ const UserProfile = () => {
           </p>
         </div>
 
+        {/* Change Password Heading */}
+        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white m-5">
+          Change Password
+        </h1>
+
         {/* Change Password Form */}
-        <form onSubmit={handleChangePassword} className="mt-6 ">
+        <form onSubmit={handleChangePassword} className="mt-4 ">
           <input
             type="password"
             placeholder="Current Password"

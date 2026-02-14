@@ -79,6 +79,14 @@ const DashboardLayout = () => {
               <>
                 <li>
                   <Link
+                    to="/dashboard/makeBioData"
+                    className="hover:bg-black hover:text-white px-3 py-2 rounded-md font-semibold block dark:text-gray-200"
+                  >
+                    MakeBioData
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     to="/dashboard/editBioData"
                     className="hover:bg-black hover:text-white px-3 py-2 rounded-md font-semibold block dark:text-gray-200"
                   >

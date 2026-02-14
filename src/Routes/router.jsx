@@ -20,6 +20,7 @@ import AdminDashboard from "../Pages/Dashboard/Admin/AdminDashboard";
 import ApprovedContact from "../Pages/Dashboard/Admin/ApprovedContact";
 import UserProfile from "../Pages/Dashboard/UserDashboard/UserProfile";
 import PayedUsers from "../Pages/Dashboard/Admin/PayedUsers";
+import MakeBiodata from "../Pages/Dashboard/UserDashboard/MakeBiodata";
 
 const router = createBrowserRouter([
   {
@@ -73,12 +74,20 @@ const router = createBrowserRouter([
           </PrivetRoutes>
         ),
       },
-      //! users rotes
+      //! users router
       {
         path: "editBioData",
         element: (
           <PrivetRoutes>
             <EditBio></EditBio>
+          </PrivetRoutes>
+        ),
+      },
+      {
+        path: "makeBioData",
+        element: (
+          <PrivetRoutes>
+            <MakeBiodata></MakeBiodata>
           </PrivetRoutes>
         ),
       },
@@ -107,7 +116,7 @@ const router = createBrowserRouter([
           </PrivetRoutes>
         ),
       },
-      //! Admin rotes
+      //! Admin router
       {
         path: "manageUser",
         element: (
